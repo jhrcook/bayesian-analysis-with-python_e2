@@ -220,7 +220,7 @@ vignettes/*.pdf
 
 ### R.Bookdown Stack ###
 # R package: bookdown caching files
-/*_files/
+# /*_files/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,macos,r,jupyternotebooks
 
