@@ -18,6 +18,7 @@ import pymc3 as pm
 import arviz as az
 import matplotlib.pyplot as plt
 import seaborn as sns
+from theano import shared
 ```
 
 ## Simple linear regression
@@ -117,7 +118,7 @@ with pm.Model() as model_g:
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 38 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 36 seconds.
     The acceptance probability does not match the target. It is 0.885111829718544, but should be close to 0.8. Try to increase the number of tuning steps.
     There were 65 divergences after tuning. Increase `target_accept` or reparameterize.
     The acceptance probability does not match the target. It is 0.6965599556729883, but should be close to 0.8. Try to increase the number of tuning steps.
@@ -293,7 +294,7 @@ ppc = pm.sample_posterior_predictive(trace_g, samples=2000, model=model_g)
         }
     </style>
   <progress value='2000' class='' max='2000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [2000/2000 00:02<00:00]
+  100.00% [2000/2000 00:03<00:00]
 </div>
 
 
@@ -423,7 +424,7 @@ with pm.Model() as unpooled_model:
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 29 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 27 seconds.
     There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
     There were 3 divergences after tuning. Increase `target_accept` or reparameterize.
 
@@ -498,12 +499,12 @@ with pm.Model() as hierarchical_model:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:21<00:00 Sampling 2 chains, 60 divergences]
+  100.00% [4000/4000 00:23<00:00 Sampling 2 chains, 60 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 32 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 31 seconds.
     There were 37 divergences after tuning. Increase `target_accept` or reparameterize.
     There were 23 divergences after tuning. Increase `target_accept` or reparameterize.
     The number of effective samples is smaller than 25% for some parameters.
@@ -617,12 +618,12 @@ with pm.Model() as model_poly:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:18<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:17<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 27 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 24 seconds.
 
 
 
@@ -647,7 +648,378 @@ plt.show()
 
 ## Multiple linear regression
 
+$$
+\begin{align*}
+\mu &= \alpha + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_m x_m \\
+    &= \sum_{i=1}^{n} \beta_i x_i \\
+    &= \alpha + X \beta
+\end{align*}
+$$
+
+- mock data for an example
+
 
 ```python
+np.random.seed(314)
+N = 100
+alpha_real = 2.5
+beta_real = [0.9, 1.5]
+eps_real = np.random.normal(0, 0.5, size=N)
 
+X = np.array([np.random.normal(i, j, N) for i, j in zip([10, 2], [1, 1.5])]).T
+X_mean = X.mean(axis=0, keepdims=True)
+X_centered = X - X_mean
+y = alpha_real + np.dot(X, beta_real) + eps_real
+
+def scatter_plot(x, y):
+    plt.figure(figsize=(10, 10))
+    for idx, x_i in enumerate(x.T):
+        plt.subplot(2, 2, idx + 1)
+        plt.scatter(x_i, y)
+        plt.xlabel(f'x_{idx + 1}', fontsize = 15)
+        plt.ylabel('y', rotation=0, fontsize = 15)
+    plt.subplot(2, 2, idx + 2)
+    plt.scatter(x[: , 0], x[:, 1])
+    plt.xlabel(f'x_{idx}', fontsize = 15)
+    plt.ylabel(f'x_{idx + 1}', rotation = 0, fontsize = 15)
+
+scatter_plot(X_centered, y)
 ```
+
+
+![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_39_0.png)
+
+
+- the model for the multivariate model is simillar to the univariate, but with a few modifications:
+    - the variable $\beta$ is a Gaussian *with shape 2*
+    - define the variable $\mu$ as a dot product of $X$ and $\beta$
+
+
+```python
+with pm.Model() as model_mlr:
+    α_temp = pm.Normal('α_temp', mu=0, sd=10)
+    β = pm.Normal('β', mu=0, sd=1, shape=2)  # `shape=2` because 2 slopes
+    ϵ = pm.HalfCauchy('ϵ', 5)
+    
+    µ = α_temp + pm.math.dot(X_centered, β)
+    
+    α = pm.Deterministic('α', α_temp - pm.math.dot(X_mean, β))
+    
+    y_pred = pm.Normal('y_pred', mu=µ, sd=ϵ, observed=y)
+    
+    trace_mlr = pm.sample(2000)
+```
+
+    Auto-assigning NUTS sampler...
+    Initializing NUTS using jitter+adapt_diag...
+    Multiprocess sampling (2 chains in 2 jobs)
+    NUTS: [ϵ, β, α_temp]
+
+
+
+
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [6000/6000 00:12<00:00 Sampling 2 chains, 0 divergences]
+</div>
+
+
+
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 19 seconds.
+
+
+
+```python
+az_trace_mlr = az.from_pymc3(trace=trace_mlr, model=model_mlr)
+var_names = ['α', 'β', 'ϵ']
+az.summary(az_trace_mlr, var_names=var_names)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_mean</th>
+      <th>ess_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>α[0]</th>
+      <td>1.857</td>
+      <td>0.449</td>
+      <td>0.985</td>
+      <td>2.654</td>
+      <td>0.006</td>
+      <td>0.004</td>
+      <td>5521.0</td>
+      <td>5058.0</td>
+      <td>5493.0</td>
+      <td>2968.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>β[0]</th>
+      <td>0.968</td>
+      <td>0.044</td>
+      <td>0.890</td>
+      <td>1.052</td>
+      <td>0.001</td>
+      <td>0.000</td>
+      <td>5515.0</td>
+      <td>5515.0</td>
+      <td>5470.0</td>
+      <td>3076.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>β[1]</th>
+      <td>1.470</td>
+      <td>0.032</td>
+      <td>1.412</td>
+      <td>1.531</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>5716.0</td>
+      <td>5703.0</td>
+      <td>5709.0</td>
+      <td>3379.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ϵ</th>
+      <td>0.474</td>
+      <td>0.036</td>
+      <td>0.408</td>
+      <td>0.541</td>
+      <td>0.000</td>
+      <td>0.000</td>
+      <td>5665.0</td>
+      <td>5585.0</td>
+      <td>5675.0</td>
+      <td>3004.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+az.plot_trace(az_trace_mlr, var_names=var_names)
+plt.show()
+```
+
+
+![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_43_0.png)
+
+
+### Confounding variables and redundant variables
+
+### Multicolinearity or when the correlation is too high
+
+### Masking effect variables
+
+### Adding interactions
+
+## Variable variance
+
+- can use a linear model to model the variance of the data when the assumption of constant variance is not appropriate
+- example: WHO data in baby length as a measure of age
+
+
+```python
+data = pd.read_csv('data/babies.csv').rename({'Lenght': 'Length'}, axis=1)
+data.plot.scatter('Month', 'Length')
+plt.show()
+```
+
+
+![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_45_0.png)
+
+
+- new three elements to the previous linear models:
+    - $\epsilon$ as a linear function of $x$ with a parameters $\gamma$ and $\delta$ as analogs of $\alpha$ and $\beta$
+    - the linear model for the mean is a function of $\sqrt{x}$ because the data has a curve
+    - include a shared variance `x_shared` to change the values of $x$ without needed to refit the model (continue to see why this is useful)
+        - this does not work as the author intended, so just ignore it for now
+
+
+```python
+with pm.Model() as model_vv:
+    α = pm.Normal('α', sd=10)
+    β = pm.Normal('β', sd=10)
+    γ = pm.HalfNormal('γ', sd=10)
+    ẟ = pm.HalfNormal('ẟ', sd=10)
+    
+    x_shared = shared(data.Month.values * 1.0)
+    
+    µ = pm.Deterministic('µ', α + β*(x_shared**0.5))
+    ϵ = pm.Deterministic('ϵ', γ + ẟ*x_shared)
+    
+    y_pred = pm.Normal('y_pred', mu=µ, sd=ϵ, observed=data.Length)
+    
+    trace_vv = pm.sample(1000, tune=1000)
+```
+
+    Auto-assigning NUTS sampler...
+    Initializing NUTS using jitter+adapt_diag...
+    Multiprocess sampling (2 chains in 2 jobs)
+    NUTS: [ẟ, γ, β, α]
+
+
+
+
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [4000/4000 00:14<00:00 Sampling 2 chains, 0 divergences]
+</div>
+
+
+
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 21 seconds.
+
+
+
+```python
+plt.figure(figsize=(10, 7))
+plt.plot(data.Month, data.Length, 'C0.', alpha=0.4)
+
+µ_mean = trace_vv['µ'].mean(0)
+ϵ_mean = trace_vv['ϵ'].mean(0)
+
+plt.plot(data.Month, µ_mean, c='k')
+
+plt.fill_between(data.Month, 
+                 µ_mean + 1 * ϵ_mean,
+                 µ_mean - 1 * ϵ_mean,
+                 alpha=0.5, color='C1')
+plt.fill_between(data.Month, 
+                 µ_mean + 2 * ϵ_mean,
+                 µ_mean - 2 * ϵ_mean,
+                 alpha=0.3, color='C1')
+
+plt.xlabel('x', fontsize=15)
+plt.ylabel('y', fontsize=15, rotation=0)
+
+plt.show()
+```
+
+
+![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_48_0.png)
+
+
+- want to get a prediction from the model on input it has never seen
+
+
+```python
+x_shared.get_value().shape
+```
+
+
+
+
+    (800,)
+
+
+
+
+```python
+x_shared.set_value([0.5])
+ppc = pm.sample_posterior_predictive(trace=trace_vv, samples=2000, model=model_vv)
+y_ppc = ppc['y_pred'][:, 0]
+y_ppc
+```
+
+
+
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='2000' class='' max='2000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [2000/2000 00:03<00:00]
+</div>
+
+
+
+
+
+
+    array([54.3918917 , 53.89657183, 53.57404815, ..., 57.92876611,
+           52.80837472, 51.47306132])
+
+
+
+
+```python
+ppc['y_pred'].shape
+```
+
+
+
+
+    (2000, 800)
+
+
