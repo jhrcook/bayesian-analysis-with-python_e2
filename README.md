@@ -12,4 +12,5 @@ This book should serve as a strong introduction to the [PyMC3](https://docs.pymc
 
 ## Notes
 
-[Ch 2. Programming Probabilistically](02_programming-probabilistically.md)
+[Ch 2. Programming Probabilistically](02_programming-probabilistically.md)  
+[Ch 3. Modeling with Linear Regression](03_modeling-with-linear-regression.md)  
