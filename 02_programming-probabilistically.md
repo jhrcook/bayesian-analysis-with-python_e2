@@ -71,8 +71,8 @@ $$
 
 ```python
 with pm.Model() as our_first_model:
-    θ = pm.Beta('θ', alpha=1.0, beta=1.0)
-    y = pm.Bernoulli('y', p=θ, observed=data)
+    θ = pm.Beta("θ", alpha=1.0, beta=1.0)
+    y = pm.Bernoulli("y", p=θ, observed=data)
     trace = pm.sample(1000, random_seed=123)
 ```
 
@@ -218,7 +218,7 @@ p = az.plot_posterior(az_trace)
 
 
 ```python
-p = az.plot_posterior(az_trace, rope = [0.45, 0.55])
+p = az.plot_posterior(az_trace, rope=[0.45, 0.55])
 ```
 
 
@@ -230,7 +230,7 @@ p = az.plot_posterior(az_trace, rope = [0.45, 0.55])
 
 
 ```python
-az.plot_posterior(az_trace, rope = [0.45, 0.55], ref_val = 0.5)
+az.plot_posterior(az_trace, rope=[0.45, 0.55], ref_val=0.5)
 ```
 
 
@@ -259,19 +259,17 @@ az.plot_posterior(az_trace, rope = [0.45, 0.55], ref_val = 0.5)
 
 ```python
 grid = np.linspace(0, 1, 200)
-theta_pos = trace['θ']
+theta_pos = trace["θ"]
 lossf_a = [np.mean(abs(i - theta_pos)) for i in grid]
-lossf_b = [np.mean((i - theta_pos)**2) for i in grid]
+lossf_b = [np.mean((i - theta_pos) ** 2) for i in grid]
 
-for lossf, c in zip([lossf_a, lossf_b], ['C0', 'C1']):
+for lossf, c in zip([lossf_a, lossf_b], ["C0", "C1"]):
     mini = np.argmin(lossf)
     plt.plot(grid, lossf, c)
-    plt.plot(grid[mini], lossf[mini], 'o', color=c)
-    plt.annotate('{:.2f}'.format(grid[mini]),
-                 (grid[mini], lossf[mini] + 0.03), 
-                 color=c)
+    plt.plot(grid[mini], lossf[mini], "o", color=c)
+    plt.annotate("{:.2f}".format(grid[mini]), (grid[mini], lossf[mini] + 0.03), color=c)
     plt.yticks([])
-    plt.xlabel(r'$\hat{\theta}$')
+    plt.xlabel(r"$\hat{\theta}$")
 ```
 
 
@@ -289,7 +287,7 @@ for lossf, c in zip([lossf_a, lossf_b], ['C0', 'C1']):
 
 
 ```python
-data = np.loadtxt('data/chemical_shifts.csv')
+data = np.loadtxt("data/chemical_shifts.csv")
 data
 ```
 
@@ -330,9 +328,9 @@ $$
 
 ```python
 with pm.Model() as model_g:
-    µ = pm.Uniform('µ', lower=40, upper=70)
-    σ = pm.HalfNormal('σ', sd=10)
-    y = pm.Normal('y', mu=µ, sd=σ, observed=data)
+    µ = pm.Uniform("µ", lower=40, upper=70)
+    σ = pm.HalfNormal("σ", sd=10)
+    y = pm.Normal("y", mu=µ, sd=σ, observed=data)
     trace_g = pm.sample(1000)
 
 az_trace_g = az.from_pymc3(trace=trace_g, model=model_g)
@@ -385,7 +383,7 @@ az.plot_trace(az_trace_g)
 
 
 ```python
-az.plot_pair(az_trace_g, kind='kde', fill_last=False)
+az.plot_pair(az_trace_g, kind="kde", fill_last=False)
 plt.show()
 ```
 
@@ -398,7 +396,7 @@ plt.show()
 
 
 ```python
-len(trace_g['σ'])
+len(trace_g["σ"])
 ```
 
 
@@ -551,11 +549,11 @@ x_values = np.linspace(-10, 10, 500)
 for dof in [1, 2, 30]:
     distrib = stats.t(dof)
     x_pdf = distrib.pdf(x_values)
-    plt.plot(x_values, x_pdf, label=fr'$\nu = {dof}$', lw=3)
+    plt.plot(x_values, x_pdf, label=fr"$\nu = {dof}$", lw=3)
 
 x_pdf = stats.norm.pdf(x_values)
-plt.plot(x_values, x_pdf, 'k--', label=r'$\nu = \infty$')
-plt.xlabel('x')
+plt.plot(x_values, x_pdf, "k--", label=r"$\nu = \infty$")
+plt.xlabel("x")
 plt.yticks([])
 plt.legend()
 plt.xlim(-5, 5)
@@ -579,10 +577,10 @@ $$
 
 ```python
 with pm.Model() as model_t:
-    µ = pm.Uniform('µ', 40, 75)
-    σ = pm.HalfNormal('σ', sd=10)
-    ν = pm.Exponential('ν', 1/30)  # d.o.f. is parameterized as the inverse mean
-    y = pm.StudentT('y', mu=µ, sd=σ, nu=ν, observed=data)
+    µ = pm.Uniform("µ", 40, 75)
+    σ = pm.HalfNormal("σ", sd=10)
+    ν = pm.Exponential("ν", 1 / 30)  # d.o.f. is parameterized as the inverse mean
+    y = pm.StudentT("y", mu=µ, sd=σ, nu=ν, observed=data)
     trace_t = pm.sample(1000)
 ```
 
@@ -880,7 +878,7 @@ tips.head()
 
 ```python
 plt.figure(figsize=(8, 5))
-sns.violinplot(x='day', y='tip', data=tips)
+sns.violinplot(x="day", y="tip", data=tips)
 plt.show()
 ```
 
@@ -892,8 +890,8 @@ plt.show()
 
 
 ```python
-tip = tips['tip'].values
-idx = pd.Categorical(tips['day'], categories=['Thur', 'Fri', 'Sat', 'Sun']).codes
+tip = tips["tip"].values
+idx = pd.Categorical(tips["day"], categories=["Thur", "Fri", "Sat", "Sun"]).codes
 groups = len(np.unique(idx))
 ```
 
@@ -902,11 +900,11 @@ groups = len(np.unique(idx))
 
 ```python
 with pm.Model() as comparing_groups:
-    µ = pm.Normal('µ', mu=0, sd=10, shape=groups)
-    σ = pm.HalfNormal('σ', sd=10, shape=groups)
-    
-    y = pm.Normal('y', mu=µ[idx], sd=σ[idx], observed=tip)
-    
+    µ = pm.Normal("µ", mu=0, sd=10, shape=groups)
+    σ = pm.HalfNormal("σ", sd=10, shape=groups)
+
+    y = pm.Normal("y", mu=µ[idx], sd=σ[idx], observed=tip)
+
     trace_cg = pm.sample(5000)
 ```
 
@@ -957,20 +955,20 @@ dist = stats.norm()
 
 fig, ax = plt.subplots(3, 2, figsize=(14, 8), constrained_layout=True)
 
-comparisons = [(i, j) for i in range(4) for j in range(i+1, 4)]
+comparisons = [(i, j) for i in range(4) for j in range(i + 1, 4)]
 pos = [(k, l) for k in range(3) for l in (0, 1)]
 
 for (i, j), (k, l) in zip(comparisons, pos):
-    means_diff = trace_cg['µ'][:, i] - trace_cg['µ'][:, j]
-    d_cohen = (means_diff / np.sqrt((trace_cg['σ'][:, i]**2 + trace_cg['σ'][:, j]**2) / 2)).mean()
-    ps = dist.cdf(d_cohen / (2**0.5))
-    
+    means_diff = trace_cg["µ"][:, i] - trace_cg["µ"][:, j]
+    d_cohen = (
+        means_diff / np.sqrt((trace_cg["σ"][:, i] ** 2 + trace_cg["σ"][:, j] ** 2) / 2)
+    ).mean()
+    ps = dist.cdf(d_cohen / (2 ** 0.5))
+
     az.plot_posterior(means_diff, ref_val=0, ax=ax[k, l])
-    ax[k, l].set_title(f'$\mu_{i}-\mu_{j}$')
-    ax[k, l].plot(
-        0, label=f'Cohen\'s d = {d_cohen:.2f}\nProb sup = {ps:.2f}', alpha=0
-    )
-    ax[k,l].legend()
+    ax[k, l].set_title(f"$\mu_{i}-\mu_{j}$")
+    ax[k, l].plot(0, label=f"Cohen's d = {d_cohen:.2f}\nProb sup = {ps:.2f}", alpha=0)
+    ax[k, l].legend()
 ```
 
 
@@ -992,7 +990,7 @@ G_samples = [18, 18, 18]
 group_idx = np.repeat(np.arange(len(N_samples)), N_samples)
 data = []
 for i in range(0, len(N_samples)):
-    data.extend(np.repeat([1, 0], [G_samples[i], N_samples[i]-G_samples[i]]))
+    data.extend(np.repeat([1, 0], [G_samples[i], N_samples[i] - G_samples[i]]))
 
 print(group_idx[:20])
 print(data[:20])
@@ -1020,12 +1018,12 @@ $$
 
 ```python
 with pm.Model() as model_h:
-    µ = pm.Beta('µ', 1.0, 1.0)
-    κ = pm.HalfNormal('κ', 10)
-    
-    θ = pm.Beta('θ', alpha=µ*κ, beta=(1.0-µ)*κ, shape=len(N_samples))
-    y = pm.Bernoulli('y', p=θ[group_idx], observed=data)
-    
+    µ = pm.Beta("µ", 1.0, 1.0)
+    κ = pm.HalfNormal("κ", 10)
+
+    θ = pm.Beta("θ", alpha=µ * κ, beta=(1.0 - µ) * κ, shape=len(N_samples))
+    y = pm.Bernoulli("y", p=θ[group_idx], observed=data)
+
     trace_h = pm.sample(2000)
 ```
 
@@ -1084,7 +1082,7 @@ plt.show()
 
 
 ```python
-cs_data = pd.read_csv('data/chemical_shifts_theo_exp.csv')
+cs_data = pd.read_csv("data/chemical_shifts_theo_exp.csv")
 cs_data.head()
 ```
 
@@ -1160,9 +1158,9 @@ cs_data.head()
 
 ```python
 diff = cs_data.theo.values - cs_data.exp.values
-idx = pd.Categorical(cs_data['aa']).codes
+idx = pd.Categorical(cs_data["aa"]).codes
 groups = len(np.unique(idx))
-print(f'There are {groups} different amino acids in the data.')
+print(f"There are {groups} different amino acids in the data.")
 ```
 
     There are 19 different amino acids in the data.
@@ -1173,11 +1171,11 @@ print(f'There are {groups} different amino acids in the data.')
 
 ```python
 with pm.Model() as cs_nh:
-    µ = pm.Normal('µ', mu=0, sd=10, shape=groups)
-    σ = pm.HalfNormal('σ', sd=10, shape=groups)
-    
-    y = pm.Normal('y', mu=µ[idx], sd=σ[idx], observed=diff)
-    
+    µ = pm.Normal("µ", mu=0, sd=10, shape=groups)
+    σ = pm.HalfNormal("σ", sd=10, shape=groups)
+
+    y = pm.Normal("y", mu=µ[idx], sd=σ[idx], observed=diff)
+
     trace_cs_nh = pm.sample(1000)
 ```
 
@@ -1215,15 +1213,15 @@ with pm.Model() as cs_nh:
 ```python
 with pm.Model() as cs_h:
     # hyper-priors on varying µ
-    µ_µ = pm.Normal('µ_µ', mu=0, sd=10)
-    σ_µ = pm.HalfNormal('σ_µ', 10)
-    
+    µ_µ = pm.Normal("µ_µ", mu=0, sd=10)
+    σ_µ = pm.HalfNormal("σ_µ", 10)
+
     # priors
-    µ = pm.Normal('µ', mu=µ_µ, sd=σ_µ, shape=groups)
-    σ = pm.HalfNormal('σ', sd=10, shape=groups)
-    
-    y = pm.Normal('y', mu=µ[idx], sd=σ[idx], observed=diff)
-    
+    µ = pm.Normal("µ", mu=µ_µ, sd=σ_µ, shape=groups)
+    σ = pm.HalfNormal("σ", sd=10, shape=groups)
+
+    y = pm.Normal("y", mu=µ[idx], sd=σ[idx], observed=diff)
+
     trace_cs_h = pm.sample(1000)
 ```
 
@@ -1263,14 +1261,14 @@ with pm.Model() as cs_h:
 ```python
 axes = az.plot_forest(
     [az.from_pymc3(trace_cs_nh), az.from_pymc3(trace_cs_h)],
-    model_names=['n_h', 'h'],
-    var_names='µ',
+    model_names=["n_h", "h"],
+    var_names="µ",
     combined=True,
-    colors='cycle'
+    colors="cycle",
 )
 
 y_lims = axes[0].get_ylim()
-axes[0].vlines(trace_cs_h['µ_µ'].mean(), *y_lims)
+axes[0].vlines(trace_cs_h["µ_µ"].mean(), *y_lims)
 
 plt.show()
 ```
