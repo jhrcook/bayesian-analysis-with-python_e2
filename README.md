@@ -1,7 +1,7 @@
 # Notes on *Bayesian Analysis with Python* (2e)
 
-[![python](https://img.shields.io/badge/Python-notebooks-3776AB.svg?style=flat&logo=python)](https://github.com/jhrcook)
-[![python](https://img.shields.io/badge/Jupyter-notebooks-F37626.svg?style=flat&logo=jupyter)](https://github.com/jhrcook)  
+[![python](https://img.shields.io/badge/Python-3.8.3-3776AB.svg?style=flat&logo=python)](https://github.com/jhrcook)
+[![python](https://img.shields.io/badge/Jupyter-Lab-F37626.svg?style=flat&logo=jupyter)](https://github.com/jhrcook)  
 [![jhc github](https://img.shields.io/badge/GitHub-jhrcook-181717.svg?style=flat&logo=github)](https://github.com/jhrcook)
 [![jhc twitter](https://img.shields.io/badge/Twitter-@JoshDoesA-00aced.svg?style=flat&logo=twitter)](https://twitter.com/JoshDoesa)
 [![jhc website](https://img.shields.io/badge/Website-Joshua_Cook-5087B2.svg?style=flat&logo=telegram)](https://joshuacook.netlify.com)
