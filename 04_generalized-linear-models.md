@@ -204,12 +204,12 @@ with pm.Model() as model_0:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:08<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:06<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 20 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 14 seconds.
 
 
 
@@ -265,73 +265,73 @@ az.summary(az_trace_0)
   <tbody>
     <tr>
       <th>α</th>
-      <td>0.296</td>
-      <td>0.315</td>
-      <td>-0.282</td>
-      <td>0.874</td>
+      <td>0.295</td>
+      <td>0.332</td>
+      <td>-0.347</td>
+      <td>0.873</td>
       <td>0.009</td>
       <td>0.007</td>
-      <td>1253.0</td>
-      <td>1069.0</td>
-      <td>1262.0</td>
-      <td>1255.0</td>
-      <td>1.0</td>
+      <td>1304.0</td>
+      <td>1249.0</td>
+      <td>1297.0</td>
+      <td>1127.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>β</th>
-      <td>5.353</td>
-      <td>1.024</td>
-      <td>3.559</td>
-      <td>7.250</td>
-      <td>0.031</td>
-      <td>0.022</td>
-      <td>1096.0</td>
-      <td>1096.0</td>
-      <td>1094.0</td>
-      <td>1049.0</td>
-      <td>1.0</td>
+      <td>5.339</td>
+      <td>1.001</td>
+      <td>3.342</td>
+      <td>7.085</td>
+      <td>0.026</td>
+      <td>0.019</td>
+      <td>1480.0</td>
+      <td>1448.0</td>
+      <td>1509.0</td>
+      <td>1487.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[0]</th>
       <td>0.164</td>
-      <td>0.057</td>
-      <td>0.064</td>
-      <td>0.270</td>
-      <td>0.002</td>
+      <td>0.053</td>
+      <td>0.071</td>
+      <td>0.264</td>
       <td>0.001</td>
-      <td>1403.0</td>
-      <td>1403.0</td>
-      <td>1352.0</td>
-      <td>1024.0</td>
-      <td>1.0</td>
+      <td>0.001</td>
+      <td>1381.0</td>
+      <td>1381.0</td>
+      <td>1360.0</td>
+      <td>1311.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>θ[1]</th>
       <td>0.068</td>
-      <td>0.036</td>
-      <td>0.014</td>
-      <td>0.136</td>
+      <td>0.034</td>
+      <td>0.016</td>
+      <td>0.132</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1377.0</td>
-      <td>1377.0</td>
-      <td>1263.0</td>
-      <td>965.0</td>
-      <td>1.0</td>
+      <td>1473.0</td>
+      <td>1473.0</td>
+      <td>1415.0</td>
+      <td>1328.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[2]</th>
       <td>0.027</td>
-      <td>0.020</td>
-      <td>0.001</td>
-      <td>0.063</td>
-      <td>0.001</td>
+      <td>0.019</td>
+      <td>0.002</td>
+      <td>0.060</td>
       <td>0.000</td>
-      <td>1317.0</td>
-      <td>1317.0</td>
-      <td>1224.0</td>
-      <td>1013.0</td>
-      <td>1.0</td>
+      <td>0.000</td>
+      <td>1520.0</td>
+      <td>1520.0</td>
+      <td>1455.0</td>
+      <td>1355.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>...</th>
@@ -349,73 +349,73 @@ az.summary(az_trace_0)
     </tr>
     <tr>
       <th>θ[96]</th>
-      <td>0.812</td>
-      <td>0.064</td>
-      <td>0.687</td>
-      <td>0.920</td>
+      <td>0.811</td>
+      <td>0.067</td>
+      <td>0.685</td>
+      <td>0.926</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1112.0</td>
-      <td>1105.0</td>
-      <td>1101.0</td>
-      <td>1010.0</td>
-      <td>1.0</td>
+      <td>1329.0</td>
+      <td>1329.0</td>
+      <td>1377.0</td>
+      <td>1206.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[97]</th>
       <td>0.979</td>
       <td>0.018</td>
-      <td>0.946</td>
+      <td>0.948</td>
       <td>0.999</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>1031.0</td>
-      <td>1029.0</td>
-      <td>1061.0</td>
-      <td>1009.0</td>
-      <td>1.0</td>
+      <td>1220.0</td>
+      <td>1220.0</td>
+      <td>1468.0</td>
+      <td>1251.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[98]</th>
       <td>0.164</td>
-      <td>0.057</td>
-      <td>0.064</td>
-      <td>0.270</td>
-      <td>0.002</td>
+      <td>0.053</td>
+      <td>0.071</td>
+      <td>0.264</td>
       <td>0.001</td>
-      <td>1403.0</td>
-      <td>1403.0</td>
-      <td>1352.0</td>
-      <td>1024.0</td>
-      <td>1.0</td>
+      <td>0.001</td>
+      <td>1381.0</td>
+      <td>1381.0</td>
+      <td>1360.0</td>
+      <td>1311.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>θ[99]</th>
-      <td>0.812</td>
-      <td>0.064</td>
-      <td>0.687</td>
-      <td>0.920</td>
+      <td>0.811</td>
+      <td>0.067</td>
+      <td>0.685</td>
+      <td>0.926</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1112.0</td>
-      <td>1105.0</td>
-      <td>1101.0</td>
-      <td>1010.0</td>
-      <td>1.0</td>
+      <td>1329.0</td>
+      <td>1329.0</td>
+      <td>1377.0</td>
+      <td>1206.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>bd</th>
-      <td>-0.055</td>
-      <td>0.060</td>
-      <td>-0.166</td>
-      <td>0.053</td>
+      <td>-0.053</td>
+      <td>0.061</td>
+      <td>-0.164</td>
+      <td>0.066</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1299.0</td>
-      <td>1299.0</td>
-      <td>1303.0</td>
-      <td>1031.0</td>
-      <td>1.0</td>
+      <td>1252.0</td>
+      <td>1247.0</td>
+      <td>1249.0</td>
+      <td>1135.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -511,15 +511,12 @@ az_trace_1 = az.from_pymc3(trace=trace_1, model=model_1)
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:26<00:00 Sampling 2 chains, 7 divergences]
+  100.00% [6000/6000 00:29<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 37 seconds.
-    There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
-    There were 6 divergences after tuning. Increase `target_accept` or reparameterize.
-    The number of effective samples is smaller than 25% for some parameters.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 36 seconds.
 
 
 
@@ -550,6 +547,26 @@ plt.show()
 
 
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_22_1.png)
+
+
+### Interpreting the coefficients of a logisitic regression
+
+- because the model uses a non-linear link function, the effect of $\beta$ is a non-linear function on $x$
+    - if $\beta$ is positive, then as $x$ increases, so to does $\Pr(y=1)$, but non-linearly
+- some algebra to understand the effect of a coefficient
+
+$$
+\theta = \text{logistic}(\alpha + X \beta) \quad \text{logit}(z) = \log(\frac{z}{1-z}) \\
+\text{logit}(\theta) = \alpha + X \beta \\
+\log(\frac{\theta}{1-\theta}) = \alpha + X \beta \\
+\log(\frac{\Pr(y=1)}{1-\Pr(y=1)}) = \alpha + X \beta
+$$
+
+- recall: $\frac{\Pr(y=1)}{1 - \Pr(y=1)}$ = **"odds"**
+    - *"In a logistic regression, the $\beta$ coefficient encodes the increase in log-odds units by unit increase of the $x$ variable."*
+
+### Dealing with correlated variables
+
 
 
 
