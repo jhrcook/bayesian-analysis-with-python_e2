@@ -9,6 +9,7 @@ import pymc3 as pm
 import arviz as az
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotnine as gg
 ```
 
 ## Generalized linear models
@@ -204,12 +205,12 @@ with pm.Model() as model_0:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:07<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:08<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 16 seconds.
 
 
 
@@ -265,73 +266,73 @@ az.summary(az_trace_0)
   <tbody>
     <tr>
       <th>α</th>
-      <td>0.320</td>
-      <td>0.338</td>
-      <td>-0.329</td>
-      <td>0.931</td>
-      <td>0.009</td>
+      <td>0.318</td>
+      <td>0.352</td>
+      <td>-0.361</td>
+      <td>0.960</td>
+      <td>0.010</td>
       <td>0.008</td>
-      <td>1361.0</td>
-      <td>938.0</td>
-      <td>1387.0</td>
-      <td>1092.0</td>
-      <td>1.0</td>
+      <td>1291.0</td>
+      <td>1089.0</td>
+      <td>1279.0</td>
+      <td>1209.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>β</th>
-      <td>5.405</td>
-      <td>1.069</td>
-      <td>3.319</td>
-      <td>7.264</td>
-      <td>0.032</td>
-      <td>0.024</td>
-      <td>1096.0</td>
-      <td>1023.0</td>
-      <td>1163.0</td>
-      <td>1111.0</td>
-      <td>1.0</td>
+      <td>5.382</td>
+      <td>1.075</td>
+      <td>3.464</td>
+      <td>7.394</td>
+      <td>0.026</td>
+      <td>0.019</td>
+      <td>1649.0</td>
+      <td>1538.0</td>
+      <td>1712.0</td>
+      <td>1448.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>θ[0]</th>
-      <td>0.165</td>
-      <td>0.059</td>
-      <td>0.061</td>
-      <td>0.279</td>
-      <td>0.002</td>
+      <td>0.166</td>
+      <td>0.057</td>
+      <td>0.066</td>
+      <td>0.274</td>
       <td>0.001</td>
-      <td>1100.0</td>
-      <td>1071.0</td>
-      <td>1090.0</td>
-      <td>1083.0</td>
-      <td>1.0</td>
+      <td>0.001</td>
+      <td>1485.0</td>
+      <td>1485.0</td>
+      <td>1479.0</td>
+      <td>1436.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[1]</th>
       <td>0.068</td>
-      <td>0.037</td>
-      <td>0.011</td>
-      <td>0.137</td>
+      <td>0.036</td>
+      <td>0.014</td>
+      <td>0.136</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1075.0</td>
-      <td>1075.0</td>
-      <td>1066.0</td>
-      <td>986.0</td>
-      <td>1.0</td>
+      <td>1653.0</td>
+      <td>1653.0</td>
+      <td>1598.0</td>
+      <td>1389.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>θ[2]</th>
       <td>0.027</td>
       <td>0.020</td>
       <td>0.001</td>
-      <td>0.065</td>
-      <td>0.001</td>
+      <td>0.063</td>
       <td>0.000</td>
-      <td>1193.0</td>
-      <td>1193.0</td>
-      <td>1112.0</td>
-      <td>1011.0</td>
-      <td>1.0</td>
+      <td>0.000</td>
+      <td>1736.0</td>
+      <td>1711.0</td>
+      <td>1659.0</td>
+      <td>1409.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>...</th>
@@ -349,73 +350,73 @@ az.summary(az_trace_0)
     </tr>
     <tr>
       <th>θ[96]</th>
-      <td>0.817</td>
-      <td>0.065</td>
-      <td>0.697</td>
-      <td>0.930</td>
+      <td>0.814</td>
+      <td>0.070</td>
+      <td>0.679</td>
+      <td>0.937</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1298.0</td>
-      <td>1286.0</td>
-      <td>1256.0</td>
-      <td>990.0</td>
-      <td>1.0</td>
+      <td>1186.0</td>
+      <td>1186.0</td>
+      <td>1330.0</td>
+      <td>1081.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[97]</th>
-      <td>0.980</td>
-      <td>0.017</td>
-      <td>0.950</td>
-      <td>1.000</td>
+      <td>0.979</td>
+      <td>0.019</td>
+      <td>0.945</td>
+      <td>0.999</td>
+      <td>0.001</td>
       <td>0.000</td>
-      <td>0.000</td>
-      <td>1311.0</td>
-      <td>1311.0</td>
-      <td>1198.0</td>
-      <td>1071.0</td>
-      <td>1.0</td>
+      <td>1325.0</td>
+      <td>1325.0</td>
+      <td>1596.0</td>
+      <td>1178.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[98]</th>
-      <td>0.165</td>
-      <td>0.059</td>
-      <td>0.061</td>
-      <td>0.279</td>
-      <td>0.002</td>
+      <td>0.166</td>
+      <td>0.057</td>
+      <td>0.066</td>
+      <td>0.274</td>
       <td>0.001</td>
-      <td>1100.0</td>
-      <td>1071.0</td>
-      <td>1090.0</td>
-      <td>1083.0</td>
-      <td>1.0</td>
+      <td>0.001</td>
+      <td>1485.0</td>
+      <td>1485.0</td>
+      <td>1479.0</td>
+      <td>1436.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[99]</th>
-      <td>0.817</td>
-      <td>0.065</td>
-      <td>0.697</td>
-      <td>0.930</td>
+      <td>0.814</td>
+      <td>0.070</td>
+      <td>0.679</td>
+      <td>0.937</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1298.0</td>
-      <td>1286.0</td>
-      <td>1256.0</td>
-      <td>990.0</td>
-      <td>1.0</td>
+      <td>1186.0</td>
+      <td>1186.0</td>
+      <td>1330.0</td>
+      <td>1081.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>bd</th>
-      <td>-0.059</td>
-      <td>0.062</td>
-      <td>-0.172</td>
-      <td>0.062</td>
+      <td>-0.057</td>
+      <td>0.065</td>
+      <td>-0.176</td>
+      <td>0.067</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1353.0</td>
-      <td>957.0</td>
-      <td>1367.0</td>
-      <td>1093.0</td>
-      <td>1.0</td>
+      <td>1031.0</td>
+      <td>1031.0</td>
+      <td>1051.0</td>
+      <td>982.0</td>
+      <td>1.00</td>
     </tr>
   </tbody>
 </table>
@@ -511,15 +512,14 @@ az_trace_1 = az.from_pymc3(trace=trace_1, model=model_1)
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:32<00:00 Sampling 2 chains, 10 divergences]
+  100.00% [6000/6000 00:33<00:00 Sampling 2 chains, 5 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 39 seconds.
-    There were 9 divergences after tuning. Increase `target_accept` or reparameterize.
-    There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
-    The number of effective samples is smaller than 25% for some parameters.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 40 seconds.
+    There were 5 divergences after tuning. Increase `target_accept` or reparameterize.
+    The number of effective samples is smaller than 10% for some parameters.
 
 
 
@@ -625,16 +625,15 @@ with pm.Model() as model_3:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:25<00:00 Sampling 2 chains, 290 divergences]
+  100.00% [6000/6000 00:27<00:00 Sampling 2 chains, 103 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 36 seconds.
-    There were 21 divergences after tuning. Increase `target_accept` or reparameterize.
-    There were 269 divergences after tuning. Increase `target_accept` or reparameterize.
-    The acceptance probability does not match the target. It is 0.6424436933033053, but should be close to 0.8. Try to increase the number of tuning steps.
-    The number of effective samples is smaller than 10% for some parameters.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 35 seconds.
+    There were 64 divergences after tuning. Increase `target_accept` or reparameterize.
+    There were 39 divergences after tuning. Increase `target_accept` or reparameterize.
+    The number of effective samples is smaller than 25% for some parameters.
 
 
 
@@ -725,7 +724,184 @@ plt.show()
 
 ### The zero-inflated Poisson model
 
+- use if extra 0's due to missing data - not real 0's
+- mixture of 2 processes:
+    - one modeled by a Poisson with probability $\psi$
+    - one giving extra zeros with probability $1 - \psi$
 
+$$
+\Pr(y_j = 0) = 1 - \psi + \psi e^{-\mu} \qquad \Pr(y_j = k_i) = \psi \frac{\mu^{x_i} e ^{-\mu}}{x_i !}
+$$
+
+- example with mock data
+
+
+```python
+n = 100
+theta_real = 2.5
+psi_real = 0.1
+
+counts = np.array(
+    [
+        (np.random.random() > (1 - psi_real)) * np.random.poisson(theta_real)
+        for i in range(n)
+    ]
+)
+
+counts_df = pd.DataFrame({"x": counts})
+(
+    gg.ggplot(counts_df)
+    + gg.aes(x="x")
+    + gg.geom_bar()
+    + gg.scale_x_continuous(breaks=range(0, 7))
+    + gg.scale_y_continuous(expand=(0, 0, 0.02, 0))
+    + gg.theme_minimal()
+    + gg.labs(x="count value", y="number of times", title="Mock zero-inflated data")
+)
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_38_0.png)
+
+
+
+
+
+    <ggplot: (308097049)>
+
+
+
+- fit model with built-in zero-inflated Poisson function
+
+
+```python
+with pm.Model() as ZIP: 
+    psi = pm.Beta('psi', 1, 1)
+    theta = pm.Gamma('theta', 2, 0.1)
+    y = pm.ZeroInflatedPoisson('y', psi, theta, observed=counts)
+    trace_zip = pm.sample(2000)
+```
+
+    Auto-assigning NUTS sampler...
+    Initializing NUTS using jitter+adapt_diag...
+    Multiprocess sampling (2 chains in 2 jobs)
+    NUTS: [theta, psi]
+
+
+
+
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [6000/6000 00:11<00:00 Sampling 2 chains, 0 divergences]
+</div>
+
+
+
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 20 seconds.
+
+
+
+```python
+az_trace_zip = az.from_pymc3(trace = trace_zip, model = ZIP)
+```
+
+
+```python
+az.plot_trace(az_trace_zip)
+plt.show()
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_42_0.png)
+
+
+
+```python
+az.summary(az_trace_zip)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>sd</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_mean</th>
+      <th>ess_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>psi</th>
+      <td>0.099</td>
+      <td>0.032</td>
+      <td>0.039</td>
+      <td>0.158</td>
+      <td>0.001</td>
+      <td>0.000</td>
+      <td>2815.0</td>
+      <td>2689.0</td>
+      <td>2798.0</td>
+      <td>2143.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta</th>
+      <td>2.436</td>
+      <td>0.622</td>
+      <td>1.355</td>
+      <td>3.617</td>
+      <td>0.011</td>
+      <td>0.008</td>
+      <td>3037.0</td>
+      <td>3037.0</td>
+      <td>2785.0</td>
+      <td>2430.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Poisson regression and ZIP regression
 
 
 ```python
