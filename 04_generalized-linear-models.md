@@ -1,4 +1,4 @@
-# Ch 2. Generalized Linear Models
+# Ch 4. Generalized Linear Models
 
 
 ```python
@@ -204,12 +204,12 @@ with pm.Model() as model_0:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:06<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:07<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 14 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
 
 
 
@@ -265,73 +265,73 @@ az.summary(az_trace_0)
   <tbody>
     <tr>
       <th>α</th>
-      <td>0.295</td>
-      <td>0.332</td>
-      <td>-0.347</td>
-      <td>0.873</td>
+      <td>0.320</td>
+      <td>0.338</td>
+      <td>-0.329</td>
+      <td>0.931</td>
       <td>0.009</td>
-      <td>0.007</td>
-      <td>1304.0</td>
-      <td>1249.0</td>
-      <td>1297.0</td>
-      <td>1127.0</td>
-      <td>1.00</td>
+      <td>0.008</td>
+      <td>1361.0</td>
+      <td>938.0</td>
+      <td>1387.0</td>
+      <td>1092.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>β</th>
-      <td>5.339</td>
-      <td>1.001</td>
-      <td>3.342</td>
-      <td>7.085</td>
-      <td>0.026</td>
-      <td>0.019</td>
-      <td>1480.0</td>
-      <td>1448.0</td>
-      <td>1509.0</td>
-      <td>1487.0</td>
-      <td>1.00</td>
+      <td>5.405</td>
+      <td>1.069</td>
+      <td>3.319</td>
+      <td>7.264</td>
+      <td>0.032</td>
+      <td>0.024</td>
+      <td>1096.0</td>
+      <td>1023.0</td>
+      <td>1163.0</td>
+      <td>1111.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[0]</th>
-      <td>0.164</td>
-      <td>0.053</td>
-      <td>0.071</td>
-      <td>0.264</td>
+      <td>0.165</td>
+      <td>0.059</td>
+      <td>0.061</td>
+      <td>0.279</td>
+      <td>0.002</td>
       <td>0.001</td>
-      <td>0.001</td>
-      <td>1381.0</td>
-      <td>1381.0</td>
-      <td>1360.0</td>
-      <td>1311.0</td>
-      <td>1.01</td>
+      <td>1100.0</td>
+      <td>1071.0</td>
+      <td>1090.0</td>
+      <td>1083.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[1]</th>
       <td>0.068</td>
-      <td>0.034</td>
-      <td>0.016</td>
-      <td>0.132</td>
+      <td>0.037</td>
+      <td>0.011</td>
+      <td>0.137</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1473.0</td>
-      <td>1473.0</td>
-      <td>1415.0</td>
-      <td>1328.0</td>
-      <td>1.00</td>
+      <td>1075.0</td>
+      <td>1075.0</td>
+      <td>1066.0</td>
+      <td>986.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[2]</th>
       <td>0.027</td>
-      <td>0.019</td>
-      <td>0.002</td>
-      <td>0.060</td>
+      <td>0.020</td>
+      <td>0.001</td>
+      <td>0.065</td>
+      <td>0.001</td>
       <td>0.000</td>
-      <td>0.000</td>
-      <td>1520.0</td>
-      <td>1520.0</td>
-      <td>1455.0</td>
-      <td>1355.0</td>
-      <td>1.00</td>
+      <td>1193.0</td>
+      <td>1193.0</td>
+      <td>1112.0</td>
+      <td>1011.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -349,73 +349,73 @@ az.summary(az_trace_0)
     </tr>
     <tr>
       <th>θ[96]</th>
-      <td>0.811</td>
-      <td>0.067</td>
-      <td>0.685</td>
-      <td>0.926</td>
+      <td>0.817</td>
+      <td>0.065</td>
+      <td>0.697</td>
+      <td>0.930</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1329.0</td>
-      <td>1329.0</td>
-      <td>1377.0</td>
-      <td>1206.0</td>
-      <td>1.00</td>
+      <td>1298.0</td>
+      <td>1286.0</td>
+      <td>1256.0</td>
+      <td>990.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[97]</th>
-      <td>0.979</td>
-      <td>0.018</td>
-      <td>0.948</td>
-      <td>0.999</td>
-      <td>0.001</td>
+      <td>0.980</td>
+      <td>0.017</td>
+      <td>0.950</td>
+      <td>1.000</td>
       <td>0.000</td>
-      <td>1220.0</td>
-      <td>1220.0</td>
-      <td>1468.0</td>
-      <td>1251.0</td>
-      <td>1.00</td>
+      <td>0.000</td>
+      <td>1311.0</td>
+      <td>1311.0</td>
+      <td>1198.0</td>
+      <td>1071.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[98]</th>
-      <td>0.164</td>
-      <td>0.053</td>
-      <td>0.071</td>
-      <td>0.264</td>
+      <td>0.165</td>
+      <td>0.059</td>
+      <td>0.061</td>
+      <td>0.279</td>
+      <td>0.002</td>
       <td>0.001</td>
-      <td>0.001</td>
-      <td>1381.0</td>
-      <td>1381.0</td>
-      <td>1360.0</td>
-      <td>1311.0</td>
-      <td>1.01</td>
+      <td>1100.0</td>
+      <td>1071.0</td>
+      <td>1090.0</td>
+      <td>1083.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[99]</th>
-      <td>0.811</td>
-      <td>0.067</td>
-      <td>0.685</td>
-      <td>0.926</td>
+      <td>0.817</td>
+      <td>0.065</td>
+      <td>0.697</td>
+      <td>0.930</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1329.0</td>
-      <td>1329.0</td>
-      <td>1377.0</td>
-      <td>1206.0</td>
-      <td>1.00</td>
+      <td>1298.0</td>
+      <td>1286.0</td>
+      <td>1256.0</td>
+      <td>990.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>bd</th>
-      <td>-0.053</td>
-      <td>0.061</td>
-      <td>-0.164</td>
-      <td>0.066</td>
+      <td>-0.059</td>
+      <td>0.062</td>
+      <td>-0.172</td>
+      <td>0.062</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1252.0</td>
-      <td>1247.0</td>
-      <td>1249.0</td>
-      <td>1135.0</td>
-      <td>1.00</td>
+      <td>1353.0</td>
+      <td>957.0</td>
+      <td>1367.0</td>
+      <td>1093.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -511,12 +511,15 @@ az_trace_1 = az.from_pymc3(trace=trace_1, model=model_1)
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:29<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:32<00:00 Sampling 2 chains, 10 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 36 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 39 seconds.
+    There were 9 divergences after tuning. Increase `target_accept` or reparameterize.
+    There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
+    The number of effective samples is smaller than 25% for some parameters.
 
 
 
@@ -566,6 +569,161 @@ $$
     - *"In a logistic regression, the $\beta$ coefficient encodes the increase in log-odds units by unit increase of the $x$ variable."*
 
 ### Dealing with correlated variables
+
+- author recommends scale and standardize all non-categorical variables then use a Student's t-distribution for the prior
+
+### Dealing with unbalanced classes
+
+- logistic regression had difficulty finding the boundary when the classes are unbalanced
+- for an example, we will use the Iris data set 
+
+
+```python
+df = iris.query("species == ('setosa', 'versicolor')")
+df = df[45:]
+y_3 = pd.Categorical(df.species).codes
+x_n = ["sepal_length", "sepal_width"]
+x_3 = df[x_n].values
+```
+
+
+```python
+with pm.Model() as model_3:
+    alpha = pm.Normal("alpha", mu=0, sd=10)
+    beta = pm.Normal("beta", mu=0, sd=2, shape=len(x_n))
+
+    mu = alpha + pm.math.dot(x_3, beta)
+    theta = pm.Deterministic("theta", 1 / (1 + pm.math.exp(-mu)))
+    bd = pm.Deterministic(
+        "bd", -1.0 * alpha / beta[1] - (x_3[:, 0] * beta[0] / beta[1])
+    )
+
+    y1 = pm.Bernoulli("y1", p=theta, observed=y_3)
+
+    trace_3 = pm.sample(2000)
+```
+
+    Auto-assigning NUTS sampler...
+    Initializing NUTS using jitter+adapt_diag...
+    Multiprocess sampling (2 chains in 2 jobs)
+    NUTS: [beta, alpha]
+
+
+
+
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [6000/6000 00:25<00:00 Sampling 2 chains, 290 divergences]
+</div>
+
+
+
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 36 seconds.
+    There were 21 divergences after tuning. Increase `target_accept` or reparameterize.
+    There were 269 divergences after tuning. Increase `target_accept` or reparameterize.
+    The acceptance probability does not match the target. It is 0.6424436933033053, but should be close to 0.8. Try to increase the number of tuning steps.
+    The number of effective samples is smaller than 10% for some parameters.
+
+
+
+```python
+az_trace_3 = az.from_pymc3(trace=trace_3, model=model_3)
+```
+
+
+```python
+az.plot_trace(az_trace_3, var_names=["alpha", "beta"])
+plt.show()
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_29_0.png)
+
+
+
+```python
+idx = np.argsort(x_3[:, 0])
+bd = trace_3["bd"].mean(0)[idx]
+plt.scatter(x_3[:, 0], x_3[:, 1], c=[f"C{x}" for x in y_3])
+plt.plot(x_3[:, 0][idx], bd, color="k")
+az.plot_hdi(x_3[:, 0], trace_3["bd"], color="k", ax=plt.gca())
+plt.xlabel(x_n[0])
+plt.ylabel(x_n[1])
+plt.show()
+```
+
+    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
+      warnings.warn(
+
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_30_1.png)
+
+
+- options to fix the problem of unbalanced data:
+    - collect equal amounts of all classes (not always possible)
+    - add prior information to help constrain the model
+    - check the uncertainty of the model and run PPCs to see if the results are useful
+    - create alternative models (explained later in this chapter)
+
+### Softmax regression
+
+- *softmax regression* is one way to generalize logistic regression to more than two classes
+
+### Discrimitive and generative models
+
+- a discriminating model can also be made by finding the means of both data sets and taking the average
+
+## Poisson regression
+
+- useful for count data
+    - discrete, non-negative integers
+
+### Poisson distribution
+
+- the number of expected events within a given amount of time
+- assumes events occur independently of each other and at a fixed rate
+- parameterized using one value $\mu$ (often $\lambda$ is used, too)
+    - probability mass function of Poisson distribution:
+        - $\mu$: average number of events per unit time/space
+        - $x$: a positive integer value
+
+$$
+f(x|\mu) = \frac{e^{-\mu} \mu^x}{x!}
+$$
+
+
+```python
+mu_params = [0.5, 1.5, 3, 8]
+x = np.arange(0, max(mu_params) * 3)
+for mu in mu_params:
+    y = stats.poisson(mu).pmf(x)
+    plt.plot(x, y, "o-", label=f"µ = {mu:3.1f}")
+plt.legend()
+plt.xlabel("x")
+plt.ylabel("f(x)")
+plt.show()
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_35_0.png)
+
+
+- Poisson distribution is a special case of binomial distribution when the number of trials $n$ is very large and the probability of success $p$ is very low
+
+### The zero-inflated Poisson model
 
 
 
