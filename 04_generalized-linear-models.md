@@ -205,12 +205,12 @@ with pm.Model() as model_0:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:08<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:07<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 16 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
 
 
 
@@ -266,73 +266,73 @@ az.summary(az_trace_0)
   <tbody>
     <tr>
       <th>α</th>
-      <td>0.318</td>
-      <td>0.352</td>
-      <td>-0.361</td>
-      <td>0.960</td>
-      <td>0.010</td>
+      <td>0.310</td>
+      <td>0.343</td>
+      <td>-0.342</td>
+      <td>0.958</td>
       <td>0.008</td>
-      <td>1291.0</td>
-      <td>1089.0</td>
-      <td>1279.0</td>
-      <td>1209.0</td>
+      <td>0.007</td>
+      <td>1680.0</td>
+      <td>1191.0</td>
+      <td>1683.0</td>
+      <td>1388.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>β</th>
-      <td>5.382</td>
-      <td>1.075</td>
-      <td>3.464</td>
-      <td>7.394</td>
-      <td>0.026</td>
-      <td>0.019</td>
-      <td>1649.0</td>
-      <td>1538.0</td>
-      <td>1712.0</td>
-      <td>1448.0</td>
-      <td>1.01</td>
-    </tr>
-    <tr>
-      <th>θ[0]</th>
-      <td>0.166</td>
-      <td>0.057</td>
-      <td>0.066</td>
-      <td>0.274</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>1485.0</td>
-      <td>1485.0</td>
-      <td>1479.0</td>
-      <td>1436.0</td>
+      <td>5.418</td>
+      <td>1.031</td>
+      <td>3.785</td>
+      <td>7.610</td>
+      <td>0.027</td>
+      <td>0.020</td>
+      <td>1440.0</td>
+      <td>1352.0</td>
+      <td>1512.0</td>
+      <td>1216.0</td>
       <td>1.00</td>
     </tr>
     <tr>
-      <th>θ[1]</th>
-      <td>0.068</td>
-      <td>0.036</td>
-      <td>0.014</td>
-      <td>0.136</td>
+      <th>θ[0]</th>
+      <td>0.163</td>
+      <td>0.058</td>
+      <td>0.059</td>
+      <td>0.274</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1653.0</td>
-      <td>1653.0</td>
-      <td>1598.0</td>
-      <td>1389.0</td>
+      <td>1768.0</td>
+      <td>1681.0</td>
+      <td>1727.0</td>
+      <td>1168.0</td>
       <td>1.01</td>
+    </tr>
+    <tr>
+      <th>θ[1]</th>
+      <td>0.067</td>
+      <td>0.036</td>
+      <td>0.008</td>
+      <td>0.131</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>1721.0</td>
+      <td>1521.0</td>
+      <td>1668.0</td>
+      <td>1056.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>θ[2]</th>
       <td>0.027</td>
-      <td>0.020</td>
-      <td>0.001</td>
+      <td>0.019</td>
+      <td>0.002</td>
       <td>0.063</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>1736.0</td>
-      <td>1711.0</td>
-      <td>1659.0</td>
+      <td>1661.0</td>
       <td>1409.0</td>
-      <td>1.01</td>
+      <td>1626.0</td>
+      <td>1132.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>...</th>
@@ -350,72 +350,72 @@ az.summary(az_trace_0)
     </tr>
     <tr>
       <th>θ[96]</th>
-      <td>0.814</td>
-      <td>0.070</td>
-      <td>0.679</td>
-      <td>0.937</td>
+      <td>0.816</td>
+      <td>0.065</td>
+      <td>0.695</td>
+      <td>0.932</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1186.0</td>
-      <td>1186.0</td>
-      <td>1330.0</td>
-      <td>1081.0</td>
+      <td>1591.0</td>
+      <td>1574.0</td>
+      <td>1548.0</td>
+      <td>1217.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>θ[97]</th>
-      <td>0.979</td>
-      <td>0.019</td>
-      <td>0.945</td>
+      <td>0.981</td>
+      <td>0.016</td>
+      <td>0.952</td>
       <td>0.999</td>
-      <td>0.001</td>
       <td>0.000</td>
-      <td>1325.0</td>
-      <td>1325.0</td>
-      <td>1596.0</td>
-      <td>1178.0</td>
+      <td>0.000</td>
+      <td>1606.0</td>
+      <td>1603.0</td>
+      <td>1489.0</td>
+      <td>1240.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>θ[98]</th>
-      <td>0.166</td>
-      <td>0.057</td>
-      <td>0.066</td>
+      <td>0.163</td>
+      <td>0.058</td>
+      <td>0.059</td>
       <td>0.274</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1485.0</td>
-      <td>1485.0</td>
-      <td>1479.0</td>
-      <td>1436.0</td>
-      <td>1.00</td>
+      <td>1768.0</td>
+      <td>1681.0</td>
+      <td>1727.0</td>
+      <td>1168.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
       <th>θ[99]</th>
-      <td>0.814</td>
-      <td>0.070</td>
-      <td>0.679</td>
-      <td>0.937</td>
+      <td>0.816</td>
+      <td>0.065</td>
+      <td>0.695</td>
+      <td>0.932</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1186.0</td>
-      <td>1186.0</td>
-      <td>1330.0</td>
-      <td>1081.0</td>
+      <td>1591.0</td>
+      <td>1574.0</td>
+      <td>1548.0</td>
+      <td>1217.0</td>
       <td>1.00</td>
     </tr>
     <tr>
       <th>bd</th>
-      <td>-0.057</td>
-      <td>0.065</td>
-      <td>-0.176</td>
-      <td>0.067</td>
+      <td>-0.056</td>
+      <td>0.063</td>
+      <td>-0.172</td>
+      <td>0.061</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1031.0</td>
-      <td>1031.0</td>
-      <td>1051.0</td>
-      <td>982.0</td>
+      <td>1728.0</td>
+      <td>1256.0</td>
+      <td>1716.0</td>
+      <td>1405.0</td>
       <td>1.00</td>
     </tr>
   </tbody>
@@ -445,7 +445,6 @@ plt.show()
 ```
 
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
-      warnings.warn(
 
 
 
@@ -512,14 +511,14 @@ az_trace_1 = az.from_pymc3(trace=trace_1, model=model_1)
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:33<00:00 Sampling 2 chains, 5 divergences]
+  100.00% [6000/6000 00:35<00:00 Sampling 2 chains, 1 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 40 seconds.
-    There were 5 divergences after tuning. Increase `target_accept` or reparameterize.
-    The number of effective samples is smaller than 10% for some parameters.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 42 seconds.
+    There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
+    The number of effective samples is smaller than 25% for some parameters.
 
 
 
@@ -545,7 +544,6 @@ plt.show()
 ```
 
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
-      warnings.warn(
 
 
 
@@ -625,15 +623,15 @@ with pm.Model() as model_3:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:27<00:00 Sampling 2 chains, 103 divergences]
+  100.00% [6000/6000 00:24<00:00 Sampling 2 chains, 199 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 35 seconds.
-    There were 64 divergences after tuning. Increase `target_accept` or reparameterize.
-    There were 39 divergences after tuning. Increase `target_accept` or reparameterize.
-    The number of effective samples is smaller than 25% for some parameters.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 33 seconds.
+    There were 50 divergences after tuning. Increase `target_accept` or reparameterize.
+    There were 149 divergences after tuning. Increase `target_accept` or reparameterize.
+    The number of effective samples is smaller than 10% for some parameters.
 
 
 
@@ -664,7 +662,6 @@ plt.show()
 ```
 
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
-      warnings.warn(
 
 
 
@@ -767,7 +764,7 @@ counts_df = pd.DataFrame({"x": counts})
 
 
 
-    <ggplot: (308097049)>
+    <ggplot: (310338708)>
 
 
 
@@ -775,10 +772,10 @@ counts_df = pd.DataFrame({"x": counts})
 
 
 ```python
-with pm.Model() as ZIP: 
-    psi = pm.Beta('psi', 1, 1)
-    theta = pm.Gamma('theta', 2, 0.1)
-    y = pm.ZeroInflatedPoisson('y', psi, theta, observed=counts)
+with pm.Model() as ZIP:
+    psi = pm.Beta("psi", 1, 1)
+    theta = pm.Gamma("theta", 2, 0.1)
+    y = pm.ZeroInflatedPoisson("y", psi, theta, observed=counts)
     trace_zip = pm.sample(2000)
 ```
 
@@ -804,17 +801,17 @@ with pm.Model() as ZIP:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:11<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:10<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
 
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 20 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 19 seconds.
 
 
 
 ```python
-az_trace_zip = az.from_pymc3(trace = trace_zip, model = ZIP)
+az_trace_zip = az.from_pymc3(trace=trace_zip, model=ZIP)
 ```
 
 
@@ -869,30 +866,30 @@ az.summary(az_trace_zip)
   <tbody>
     <tr>
       <th>psi</th>
-      <td>0.099</td>
-      <td>0.032</td>
-      <td>0.039</td>
-      <td>0.158</td>
+      <td>0.117</td>
+      <td>0.038</td>
+      <td>0.053</td>
+      <td>0.188</td>
       <td>0.001</td>
-      <td>0.000</td>
-      <td>2815.0</td>
-      <td>2689.0</td>
-      <td>2798.0</td>
-      <td>2143.0</td>
+      <td>0.001</td>
+      <td>2727.0</td>
+      <td>2574.0</td>
+      <td>2754.0</td>
+      <td>2356.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>theta</th>
-      <td>2.436</td>
-      <td>0.622</td>
-      <td>1.355</td>
-      <td>3.617</td>
+      <td>2.057</td>
+      <td>0.540</td>
+      <td>1.122</td>
+      <td>3.118</td>
       <td>0.011</td>
-      <td>0.008</td>
-      <td>3037.0</td>
-      <td>3037.0</td>
-      <td>2785.0</td>
-      <td>2430.0</td>
+      <td>0.007</td>
+      <td>2631.0</td>
+      <td>2631.0</td>
+      <td>2498.0</td>
+      <td>2025.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -902,6 +899,435 @@ az.summary(az_trace_zip)
 
 
 ### Poisson regression and ZIP regression
+
+- can use the Poisson or ZIP in a linear regression
+    - use the exponential function as the inverse link function
+
+$$
+\theta = e^{\alpha + X \beta}
+$$
+
+- example with fishing data at a park
+    - data: `count`: number of fish caught, `child`: number of children in group, `camper`: if they brought a camper
+    - model: the number of fish caught
+
+
+```python
+fish_data = pd.read_csv("data/fish.csv")
+fish_data.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nofish</th>
+      <th>livebait</th>
+      <th>camper</th>
+      <th>persons</th>
+      <th>child</th>
+      <th>xb</th>
+      <th>zg</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-0.896315</td>
+      <td>3.050405</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-0.558345</td>
+      <td>1.746149</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-0.401731</td>
+      <td>0.279939</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>-0.956298</td>
+      <td>-0.601526</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.436891</td>
+      <td>0.527709</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+fish_data.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nofish</th>
+      <th>livebait</th>
+      <th>camper</th>
+      <th>persons</th>
+      <th>child</th>
+      <th>xb</th>
+      <th>zg</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>250.000000</td>
+      <td>250.000000</td>
+      <td>250.000000</td>
+      <td>250.00000</td>
+      <td>250.000000</td>
+      <td>250.000000</td>
+      <td>250.000000</td>
+      <td>250.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.296000</td>
+      <td>0.864000</td>
+      <td>0.588000</td>
+      <td>2.52800</td>
+      <td>0.684000</td>
+      <td>0.973796</td>
+      <td>0.252323</td>
+      <td>3.296000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.457407</td>
+      <td>0.343476</td>
+      <td>0.493182</td>
+      <td>1.11273</td>
+      <td>0.850315</td>
+      <td>1.440277</td>
+      <td>2.102391</td>
+      <td>11.635028</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.00000</td>
+      <td>0.000000</td>
+      <td>-3.275050</td>
+      <td>-5.625944</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>2.00000</td>
+      <td>0.000000</td>
+      <td>0.008267</td>
+      <td>-1.252724</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>2.00000</td>
+      <td>0.000000</td>
+      <td>0.954550</td>
+      <td>0.605079</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>4.00000</td>
+      <td>1.000000</td>
+      <td>1.963855</td>
+      <td>1.993237</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>4.00000</td>
+      <td>3.000000</td>
+      <td>5.352674</td>
+      <td>4.263185</td>
+      <td>149.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+with pm.Model() as ZIP_reg:
+    psi = pm.Beta("psi", 1, 1)
+    alpha = pm.Normal("alpha", 0, 10)
+    beta = pm.Normal("beta", 0, 10, shape=2)
+
+    theta = pm.math.exp(
+        alpha + beta[0] * fish_data["child"] + beta[1] * fish_data["camper"]
+    )
+    y1 = pm.ZeroInflatedPoisson("y1", psi, theta, observed=fish_data["count"])
+
+    trace_ZIP_reg = pm.sample(2000)
+    ZIP_reg_ppc = pm.sample_posterior_predictive(trace_ZIP_reg)
+```
+
+    Auto-assigning NUTS sampler...
+    Initializing NUTS using jitter+adapt_diag...
+    Multiprocess sampling (2 chains in 2 jobs)
+    NUTS: [beta, alpha, psi]
+
+
+
+
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [6000/6000 00:18<00:00 Sampling 2 chains, 0 divergences]
+</div>
+
+
+
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 25 seconds.
+
+
+
+
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [4000/4000 00:04<00:00]
+</div>
+
+
+
+
+```python
+az_trace_ZIP_reg = az.from_pymc3(
+    trace_ZIP_reg, model=ZIP_reg, posterior_predictive=ZIP_reg_ppc
+)
+```
+
+
+```python
+az.plot_trace(az_trace_ZIP_reg, var_names=["psi", "alpha", "beta"])
+plt.show()
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_49_0.png)
+
+
+
+```python
+az.plot_posterior(az_trace_ZIP_reg, var_names=["psi", "alpha", "beta"])
+plt.show()
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_50_0.png)
+
+
+
+```python
+az.plot_ppc(az_trace_ZIP_reg)
+plt.xlim((0, 40))
+plt.show()
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_51_0.png)
+
+
+
+```python
+children = list(range(5))
+fish_count_pred0 = []
+fish_count_pred1 = []
+
+for n in children:
+    without_camper = trace_ZIP_reg["alpha"] + trace_ZIP_reg["beta"][:, 0] * n
+    with_camper = without_camper + trace_ZIP_reg["beta"][:, 1]
+    fish_count_pred0.append(np.exp(without_camper))
+    fish_count_pred1.append(np.exp(with_camper))
+
+plt.plot(children, fish_count_pred0, "C0.", alpha=0.01)
+plt.plot(children, fish_count_pred1, "C1.", alpha=0.01)
+
+
+plt.xticks(children)
+plt.xlabel("Number of children")
+plt.ylabel("Predicted number of fish caught")
+plt.plot([], "C0o", label="without camper")
+plt.plot([], "C1o", label="with camper")
+plt.legend(loc="upper right")
+plt.show()
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_52_0.png)
+
+
+
+```python
+df1 = pd.DataFrame(
+    {
+        "children": children,
+        "camper": ["with camper" for i in range(len(children))],
+        "fish_count": fish_count_pred0,
+    }
+).explode("fish_count")
+
+df2 = pd.DataFrame(
+    {
+        "children": children,
+        "camper": ["without camper" for i in range(len(children))],
+        "fish_count": fish_count_pred1,
+    }
+).explode("fish_count")
+
+fish_pred_df = pd.concat([df1, df2]).astype({"fish_count": "int64"})
+
+(
+    gg.ggplot(
+        fish_pred_df, gg.aes(x="factor(children)", y="fish_count", color="camper")
+    )
+    + gg.geom_jitter(size=0.1, alpha=0.1)
+    + gg.scale_color_brewer(
+        type="qual",
+        palette="Set1",
+        guide=gg.guide_legend(override_aes={"size": 1, "alpha": 1}),
+    )
+    + gg.theme_minimal()
+    + gg.theme(legend_position=(0.8, 0.7), legend_title=gg.element_blank())
+    + gg.labs(x="number of children", y="predicted number of fish")
+)
+```
+
+
+![png](04_generalized-linear-models_files/04_generalized-linear-models_53_0.png)
+
+
+
+
+
+    <ggplot: (316150956)>
+
+
+
+## Robust logistic regression
+
+## The GLM module
+
+- a minimal interface for basic and simple models
+    - uses the *formula mini-language* from R (uses ['Patsy'](https://patsy.readthedocs.io/en/latest/index.html) under-the-hood)
 
 
 ```python
