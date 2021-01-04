@@ -8,26 +8,24 @@
 6. Regularizing priors
 
 ```python
-import numpy as np
-import pandas as pd
-from scipy import stats
-import pymc3 as pm
+from pathlib import Path
+
 import arviz as az
 import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
+import pandas as pd
 import plotnine as gg
+import pymc3 as pm
+import seaborn as sns
+from scipy import stats
+
+%config InlineBackend.figure_format = 'retina'
 ```
 
 ## Posterior predictive checks (PPC)
 
 - a way to evalutate a model in the context of the purpose of the model
 - with multiple models, can use PPC to compare them
-
-```python
-dummy_data.x.std()
-```
-
-    1.5152251489115205
 
 ```python
 dummy_data = pd.DataFrame(np.loadtxt("data/dummy.csv"), columns=["x_1", "y"])
@@ -46,9 +44,9 @@ dummy_data = dummy_data.assign(
 )
 ```
 
-![png](05_model-comparison_files/05_model-comparison_4_0.png)
+![png](05_model-comparison_files/05_model-comparison_3_0.png)
 
-    <ggplot: (309953588)>
+    <ggplot: (8765699779082)>
 
 - example: compare linear and polynomial data
 
@@ -84,11 +82,11 @@ with pm.Model() as model_l:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:06<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:05<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 15 seconds.
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/pymc3/sampling.py:1617: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 14 seconds.
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/pymc3/sampling.py:1707: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
 
 <div>
     <style>
@@ -145,11 +143,11 @@ with pm.Model() as model_p:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:09<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:07<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 15 seconds.
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/pymc3/sampling.py:1617: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 14 seconds.
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/pymc3/sampling.py:1707: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
 
 <div>
     <style>
@@ -204,9 +202,9 @@ ppc_p = pd.DataFrame({"x": x_new, "y": y_p_post, "model": "polynomial"})
 )
 ```
 
-![png](05_model-comparison_files/05_model-comparison_10_0.png)
+![png](05_model-comparison_files/05_model-comparison_9_0.png)
 
-    <ggplot: (309400724)>
+    <ggplot: (8765700585232)>
 
 ## Occam's razor – simplicity and accuracy
 
@@ -223,13 +221,8 @@ az.waic(az_l)
     Computed from 4000 by 33 log-likelihood matrix
     
               Estimate       SE
-    elpd_waic   -13.87     2.69
-    p_waic        2.47        -
-    
-    The scale is now log by default. Use 'scale' argument or 'stats.ic_scale' rcParam if
-    you rely on a specific value.
-    A higher log-score (or a lower deviance) indicates a model with better predictive
-    accuracy.
+    elpd_waic   -13.90     2.65
+    p_waic        2.46        -
 
 ```python
 az.waic(az_p)
@@ -238,19 +231,14 @@ az.waic(az_p)
     Computed from 4000 by 33 log-likelihood matrix
     
               Estimate       SE
-    elpd_waic    -4.10     2.35
-    p_waic        2.69        -
-    
-    The scale is now log by default. Use 'scale' argument or 'stats.ic_scale' rcParam if
-    you rely on a specific value.
-    A higher log-score (or a lower deviance) indicates a model with better predictive
-    accuracy.
+    elpd_waic    -4.15     2.35
+    p_waic        2.71        -
 
 ```python
 az.compare({"linear_model": az_l, "polynomal_model": az_p})
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:150: UserWarning: 
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/stats/stats.py:149: UserWarning: 
     The scale is now log by default. Use 'scale' argument or 'stats.ic_scale' rcParam if you rely on a specific value.
     A higher log-score (or a lower deviance) indicates a model with better predictive accuracy.
 
@@ -287,24 +275,24 @@ az.compare({"linear_model": az_l, "polynomal_model": az_p})
     <tr>
       <th>polynomal_model</th>
       <td>0</td>
-      <td>-4.13972</td>
-      <td>2.72082</td>
-      <td>0</td>
-      <td>0.998179</td>
-      <td>2.69576</td>
-      <td>0</td>
+      <td>-4.188210</td>
+      <td>2.747927</td>
+      <td>0.000000</td>
+      <td>0.998221</td>
+      <td>2.566588</td>
+      <td>0.000000</td>
       <td>False</td>
       <td>log</td>
     </tr>
     <tr>
       <th>linear_model</th>
       <td>1</td>
-      <td>-13.8833</td>
-      <td>2.48809</td>
-      <td>9.74363</td>
-      <td>0.00182077</td>
-      <td>2.41675</td>
-      <td>2.67658</td>
+      <td>-13.922071</td>
+      <td>2.487777</td>
+      <td>9.733861</td>
+      <td>0.001779</td>
+      <td>2.156212</td>
+      <td>2.657495</td>
       <td>False</td>
       <td>log</td>
     </tr>
@@ -316,7 +304,7 @@ az.compare({"linear_model": az_l, "polynomal_model": az_p})
 az.plot_compare(az.compare({"linear_model": az_l, "polynomal_model": az_p}))
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:150: UserWarning: 
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/stats/stats.py:149: UserWarning: 
     The scale is now log by default. Use 'scale' argument or 'stats.ic_scale' rcParam if you rely on a specific value.
     A higher log-score (or a lower deviance) indicates a model with better predictive accuracy.
 
@@ -326,7 +314,7 @@ az.plot_compare(az.compare({"linear_model": az_l, "polynomal_model": az_p}))
 
     <AxesSubplot:xlabel='Log'>
 
-![png](05_model-comparison_files/05_model-comparison_17_2.png)
+![png](05_model-comparison_files/05_model-comparison_16_2.png)
 
 ## Bayes factors[sic]
 
@@ -352,6 +340,36 @@ $$
     - a Bayesian method is to use a tighter prior distribution
     - a Laplace distribution has a peak at 0 and can be used to introduce sparsity
 
-```python
+---
 
+```python
+%load_ext watermark
+%watermark -d -u -v -iv -b -h -m
 ```
+
+    Last updated: 2021-01-04
+    
+    Python implementation: CPython
+    Python version       : 3.9.1
+    IPython version      : 7.19.0
+    
+    Compiler    : Clang 10.0.0 
+    OS          : Darwin
+    Release     : 20.1.0
+    Machine     : x86_64
+    Processor   : i386
+    CPU cores   : 4
+    Architecture: 64bit
+    
+    Hostname: JHCookMac.local
+    
+    Git branch: master
+    
+    seaborn   : 0.11.1
+    pymc3     : 3.9.3
+    arviz     : 0.10.0
+    numpy     : 1.19.4
+    matplotlib: 3.3.3
+    plotnine  : 0.7.1
+    pandas    : 1.2.0
+    scipy     : 1.6.0

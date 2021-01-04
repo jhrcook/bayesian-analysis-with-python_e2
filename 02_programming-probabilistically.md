@@ -11,13 +11,15 @@ In this chapter, we will cover the following topics:
 - Hierarchical models and shrinkage
 
 ```python
-import numpy as np
-import pandas as pd
-from scipy import stats
-import pymc3 as pm
 import arviz as az
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import pymc3 as pm
 import seaborn as sns
+from scipy import stats
+
+%config InlineBackend.figure_format = 'retina'
 ```
 
 ## Probabilistic programming
@@ -87,7 +89,7 @@ with pm.Model() as our_first_model:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:06<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:05<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
     Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 16 seconds.
@@ -203,7 +205,7 @@ p = az.plot_posterior(az_trace, rope=[0.45, 0.55])
 az.plot_posterior(az_trace, rope=[0.45, 0.55], ref_val=0.5)
 ```
 
-    array([<AxesSubplot:title={'center':'θ'}>], dtype=object)
+    <AxesSubplot:title={'center':'θ'}>
 
 ![png](02_programming-probabilistically_files/02_programming-probabilistically_20_1.png)
 
@@ -304,7 +306,7 @@ az.plot_trace(az_trace_g)
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:06<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:04<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
     Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 12 seconds.
@@ -382,7 +384,7 @@ az.summary(az_trace_g)
       <td>0.009</td>
       <td>1490.0</td>
       <td>1486.0</td>
-      <td>1504.0</td>
+      <td>1505.0</td>
       <td>1241.0</td>
       <td>1.0</td>
     </tr>
@@ -410,7 +412,7 @@ az.summary(az_trace_g)
 y_pred_g = pm.sample_posterior_predictive(trace_g, 100, model_g)
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/pymc3/sampling.py:1617: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/pymc3/sampling.py:1707: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
       warnings.warn(
 
 <div>
@@ -513,10 +515,10 @@ with pm.Model() as model_t:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:08<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:07<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 14 seconds.
 
 ```python
 az_trace_t = az.from_pymc3(trace=trace_t, model=model_t)
@@ -617,7 +619,7 @@ plt.xlim(40, 70)
 plt.show()
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/pymc3/sampling.py:1617: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/pymc3/sampling.py:1707: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
       warnings.warn(
 
 <div>
@@ -802,10 +804,10 @@ with pm.Model() as comparing_groups:
         }
     </style>
   <progress value='12000' class='' max='12000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [12000/12000 00:20<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [12000/12000 00:11<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 5_000 draw iterations (2_000 + 10_000 draws total) took 28 seconds.
+    Sampling 2 chains for 1_000 tune and 5_000 draw iterations (2_000 + 10_000 draws total) took 20 seconds.
 
 ```python
 az_trace_cg = az.from_pymc3(trace=trace_cg, model=comparing_groups)
@@ -831,7 +833,7 @@ for (i, j), (k, l) in zip(comparisons, pos):
     ps = dist.cdf(d_cohen / (2 ** 0.5))
 
     az.plot_posterior(means_diff, ref_val=0, ax=ax[k, l])
-    ax[k, l].set_title(f"$\mu_{i}-\mu_{j}$")
+    ax[k, l].set_title(fr"$\mu_{i}-\mu_{j}$")
     ax[k, l].plot(0, label=f"Cohen's d = {d_cohen:.2f}\nProb sup = {ps:.2f}", alpha=0)
     ax[k, l].legend()
 ```
@@ -906,10 +908,10 @@ with pm.Model() as model_h:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:11<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:08<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 19 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 15 seconds.
 
 ```python
 az_trace_h = az.from_pymc3(trace=trace_h, model=model_h)
@@ -1040,10 +1042,10 @@ with pm.Model() as cs_nh:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:13<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:09<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 21 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
 
 ```python
 with pm.Model() as cs_h:
@@ -1079,10 +1081,10 @@ with pm.Model() as cs_h:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:19<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:10<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 29 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 17 seconds.
 
 - compare the models using `plot_forest()`
 
@@ -1101,10 +1103,43 @@ axes[0].vlines(trace_cs_h["µ_µ"].mean(), *y_lims)
 plt.show()
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/data/io_pymc3.py:85: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/data/io_pymc3.py:87: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
       warnings.warn(
 
 ![png](02_programming-probabilistically_files/02_programming-probabilistically_70_1.png)
+
+---
+
+```python
+%load_ext watermark
+%watermark -d -u -v -iv -b -h -m
+```
+
+    Last updated: 2021-01-04
+    
+    Python implementation: CPython
+    Python version       : 3.9.1
+    IPython version      : 7.19.0
+    
+    Compiler    : Clang 10.0.0 
+    OS          : Darwin
+    Release     : 20.1.0
+    Machine     : x86_64
+    Processor   : i386
+    CPU cores   : 4
+    Architecture: 64bit
+    
+    Hostname: JHCookMac.local
+    
+    Git branch: master
+    
+    matplotlib: 3.3.3
+    pandas    : 1.2.0
+    seaborn   : 0.11.1
+    arviz     : 0.10.0
+    scipy     : 1.6.0
+    numpy     : 1.19.4
+    pymc3     : 3.9.3
 
 ```python
 

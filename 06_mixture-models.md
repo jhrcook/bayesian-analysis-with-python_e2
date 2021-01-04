@@ -5,16 +5,19 @@
 3. Continuous mixture models
 
 ```python
-import numpy as np
-import pandas as pd
-from scipy import stats
-import pymc3 as pm
+from pathlib import Path
+
 import arviz as az
 import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
+import pandas as pd
 import plotnine as gg
+import pymc3 as pm
+import seaborn as sns
+from scipy import stats
 
 gg.theme_set(gg.theme_minimal())
+%config InlineBackend.figure_format = 'retina'
 ```
 
 ## Mixture models (MM)
@@ -40,6 +43,9 @@ $$
 - example using chemical shift data (from protein NMR)
 
 ```python
+cs = pd.read_csv(Path("data/chemical_shifts_theo_exp.csv"))
+cs_exp = cs["exp"]
+
 (
     gg.ggplot(cs, gg.aes("exp"))
     + gg.geom_histogram(
@@ -53,7 +59,7 @@ $$
 
 ![png](06_mixture-models_files/06_mixture-models_4_0.png)
 
-    <ggplot: (314247069)>
+    <ggplot: (8793033785432)>
 
 ### The categorical distribution
 
@@ -78,7 +84,7 @@ example_cat_data = pd.DataFrame(
 
 ![png](06_mixture-models_files/06_mixture-models_6_0.png)
 
-    <ggplot: (314089954)>
+    <ggplot: (8793037367209)>
 
 ### The Dirichlet distribution
 
@@ -152,29 +158,29 @@ with pm.Model() as model_mg:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:18<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:25<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 29 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 35 seconds.
     The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
     The estimated number of effective samples is smaller than 200 for some parameters.
 
 ```python
-az_trace_mg  = az.from_pymc3(trace_mg, model=model_mg)
+az_trace_mg = az.from_pymc3(trace_mg, model=model_mg)
 ```
 
 ```python
-az.plot_trace(az_trace_mg, var_names=['means', 'p'])
+az.plot_trace(az_trace_mg, var_names=["means", "p"])
 plt.show()
 ```
 
 ![png](06_mixture-models_files/06_mixture-models_12_0.png)
 
 ```python
-az.summary(trace_mg, var_names=['means', 'p'])
+az.summary(trace_mg, var_names=["means", "p"])
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/data/io_pymc3.py:85: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/data/io_pymc3.py:87: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
 
 <div>
 <style scoped>
@@ -273,3 +279,61 @@ az.summary(trace_mg, var_names=['means', 'p'])
 ```python
 
 ```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
+
+---
+
+```python
+%load_ext watermark
+%watermark -d -u -v -iv -b -h -m
+```
+
+    Last updated: 2021-01-04
+    
+    Python implementation: CPython
+    Python version       : 3.9.1
+    IPython version      : 7.19.0
+    
+    Compiler    : Clang 10.0.0 
+    OS          : Darwin
+    Release     : 20.1.0
+    Machine     : x86_64
+    Processor   : i386
+    CPU cores   : 4
+    Architecture: 64bit
+    
+    Hostname: JHCookMac.local
+    
+    Git branch: master
+    
+    arviz     : 0.10.0
+    pymc3     : 3.9.3
+    plotnine  : 0.7.1
+    matplotlib: 3.3.3
+    seaborn   : 0.11.1
+    numpy     : 1.19.4
+    scipy     : 1.6.0
+    pandas    : 1.2.0

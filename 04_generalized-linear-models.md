@@ -1,14 +1,16 @@
 # Ch 4. Generalized Linear Models
 
 ```python
-import numpy as np
-import pandas as pd
-from scipy import stats
-import pymc3 as pm
 import arviz as az
 import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np
+import pandas as pd
 import plotnine as gg
+import pymc3 as pm
+import seaborn as sns
+from scipy import stats
+
+%config InlineBackend.figure_format = 'retina'
 ```
 
 ## Generalized linear models
@@ -184,10 +186,10 @@ with pm.Model() as model_0:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:07<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:04<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 17 seconds.
 
 ```python
 az_trace_0 = az.from_pymc3(trace_0, model=model_0)
@@ -235,73 +237,73 @@ az.summary(az_trace_0)
   <tbody>
     <tr>
       <th>α</th>
-      <td>0.310</td>
-      <td>0.343</td>
-      <td>-0.342</td>
-      <td>0.958</td>
-      <td>0.008</td>
+      <td>0.304</td>
+      <td>0.346</td>
+      <td>-0.318</td>
+      <td>0.994</td>
+      <td>0.009</td>
       <td>0.007</td>
-      <td>1680.0</td>
-      <td>1191.0</td>
-      <td>1683.0</td>
-      <td>1388.0</td>
-      <td>1.00</td>
+      <td>1592.0</td>
+      <td>1204.0</td>
+      <td>1602.0</td>
+      <td>1500.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>β</th>
-      <td>5.418</td>
-      <td>1.031</td>
-      <td>3.785</td>
-      <td>7.610</td>
+      <td>5.409</td>
+      <td>1.078</td>
+      <td>3.553</td>
+      <td>7.502</td>
       <td>0.027</td>
       <td>0.020</td>
-      <td>1440.0</td>
-      <td>1352.0</td>
-      <td>1512.0</td>
-      <td>1216.0</td>
-      <td>1.00</td>
+      <td>1538.0</td>
+      <td>1446.0</td>
+      <td>1577.0</td>
+      <td>1232.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[0]</th>
       <td>0.163</td>
       <td>0.058</td>
-      <td>0.059</td>
-      <td>0.274</td>
+      <td>0.060</td>
+      <td>0.266</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1768.0</td>
-      <td>1681.0</td>
-      <td>1727.0</td>
-      <td>1168.0</td>
-      <td>1.01</td>
+      <td>2022.0</td>
+      <td>1966.0</td>
+      <td>1981.0</td>
+      <td>1446.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[1]</th>
       <td>0.067</td>
       <td>0.036</td>
-      <td>0.008</td>
+      <td>0.011</td>
       <td>0.131</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1721.0</td>
-      <td>1521.0</td>
-      <td>1668.0</td>
-      <td>1056.0</td>
-      <td>1.00</td>
+      <td>1940.0</td>
+      <td>1878.0</td>
+      <td>1883.0</td>
+      <td>1267.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[2]</th>
       <td>0.027</td>
-      <td>0.019</td>
+      <td>0.021</td>
       <td>0.002</td>
-      <td>0.063</td>
+      <td>0.062</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>1661.0</td>
-      <td>1409.0</td>
-      <td>1626.0</td>
-      <td>1132.0</td>
-      <td>1.00</td>
+      <td>1864.0</td>
+      <td>1864.0</td>
+      <td>1809.0</td>
+      <td>1331.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -319,73 +321,73 @@ az.summary(az_trace_0)
     </tr>
     <tr>
       <th>θ[96]</th>
-      <td>0.816</td>
-      <td>0.065</td>
-      <td>0.695</td>
+      <td>0.814</td>
+      <td>0.069</td>
+      <td>0.684</td>
       <td>0.932</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1591.0</td>
-      <td>1574.0</td>
-      <td>1548.0</td>
-      <td>1217.0</td>
-      <td>1.00</td>
+      <td>1508.0</td>
+      <td>1486.0</td>
+      <td>1465.0</td>
+      <td>1333.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[97]</th>
-      <td>0.981</td>
-      <td>0.016</td>
-      <td>0.952</td>
-      <td>0.999</td>
+      <td>0.979</td>
+      <td>0.019</td>
+      <td>0.944</td>
+      <td>1.000</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>1606.0</td>
-      <td>1603.0</td>
-      <td>1489.0</td>
-      <td>1240.0</td>
-      <td>1.00</td>
+      <td>1552.0</td>
+      <td>1551.0</td>
+      <td>1472.0</td>
+      <td>1185.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[98]</th>
       <td>0.163</td>
       <td>0.058</td>
-      <td>0.059</td>
-      <td>0.274</td>
+      <td>0.060</td>
+      <td>0.266</td>
       <td>0.001</td>
       <td>0.001</td>
-      <td>1768.0</td>
-      <td>1681.0</td>
-      <td>1727.0</td>
-      <td>1168.0</td>
-      <td>1.01</td>
+      <td>2022.0</td>
+      <td>1966.0</td>
+      <td>1981.0</td>
+      <td>1446.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>θ[99]</th>
-      <td>0.816</td>
-      <td>0.065</td>
-      <td>0.695</td>
+      <td>0.814</td>
+      <td>0.069</td>
+      <td>0.684</td>
       <td>0.932</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1591.0</td>
-      <td>1574.0</td>
-      <td>1548.0</td>
-      <td>1217.0</td>
-      <td>1.00</td>
+      <td>1508.0</td>
+      <td>1486.0</td>
+      <td>1465.0</td>
+      <td>1333.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>bd</th>
-      <td>-0.056</td>
-      <td>0.063</td>
-      <td>-0.172</td>
-      <td>0.061</td>
+      <td>-0.055</td>
+      <td>0.064</td>
+      <td>-0.174</td>
+      <td>0.065</td>
       <td>0.002</td>
       <td>0.001</td>
-      <td>1728.0</td>
-      <td>1256.0</td>
-      <td>1716.0</td>
-      <td>1405.0</td>
-      <td>1.00</td>
+      <td>1691.0</td>
+      <td>1339.0</td>
+      <td>1682.0</td>
+      <td>1493.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -410,7 +412,7 @@ plt.xticks(locs, np.round(locs + x_0.mean(), 1))
 plt.show()
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/stats/stats.py:484: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
 
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_15_1.png)
 
@@ -469,11 +471,11 @@ az_trace_1 = az.from_pymc3(trace=trace_1, model=model_1)
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:35<00:00 Sampling 2 chains, 1 divergences]
+  100.00% [6000/6000 00:23<00:00 Sampling 2 chains, 7 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 42 seconds.
-    There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 40 seconds.
+    There were 7 divergences after tuning. Increase `target_accept` or reparameterize.
     The number of effective samples is smaller than 25% for some parameters.
 
 ```python
@@ -494,7 +496,7 @@ plt.ylabel(x_n[1])
 plt.show()
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/stats/stats.py:484: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
 
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_22_1.png)
 
@@ -566,13 +568,13 @@ with pm.Model() as model_3:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:24<00:00 Sampling 2 chains, 199 divergences]
+  100.00% [6000/6000 00:14<00:00 Sampling 2 chains, 102 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 33 seconds.
-    There were 50 divergences after tuning. Increase `target_accept` or reparameterize.
-    There were 149 divergences after tuning. Increase `target_accept` or reparameterize.
-    The number of effective samples is smaller than 10% for some parameters.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 23 seconds.
+    There were 68 divergences after tuning. Increase `target_accept` or reparameterize.
+    There were 34 divergences after tuning. Increase `target_accept` or reparameterize.
+    The number of effective samples is smaller than 25% for some parameters.
 
 ```python
 az_trace_3 = az.from_pymc3(trace=trace_3, model=model_3)
@@ -596,7 +598,7 @@ plt.ylabel(x_n[1])
 plt.show()
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/stats/stats.py:484: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
 
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_30_1.png)
 
@@ -687,7 +689,7 @@ counts_df = pd.DataFrame({"x": counts})
 
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_38_0.png)
 
-    <ggplot: (310338708)>
+    <ggplot: (8762941868581)>
 
 - fit model with built-in zero-inflated Poisson function
 
@@ -718,10 +720,10 @@ with pm.Model() as ZIP:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:10<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:06<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 19 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 17 seconds.
 
 ```python
 az_trace_zip = az.from_pymc3(trace=trace_zip, model=ZIP)
@@ -772,30 +774,30 @@ az.summary(az_trace_zip)
   <tbody>
     <tr>
       <th>psi</th>
-      <td>0.117</td>
-      <td>0.038</td>
-      <td>0.053</td>
-      <td>0.188</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>2727.0</td>
-      <td>2574.0</td>
-      <td>2754.0</td>
-      <td>2356.0</td>
+      <td>0.072</td>
+      <td>0.027</td>
+      <td>0.029</td>
+      <td>0.125</td>
+      <td>0.000</td>
+      <td>0.00</td>
+      <td>3425.0</td>
+      <td>3425.0</td>
+      <td>3171.0</td>
+      <td>2564.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>theta</th>
-      <td>2.057</td>
-      <td>0.540</td>
-      <td>1.122</td>
-      <td>3.118</td>
-      <td>0.011</td>
-      <td>0.007</td>
-      <td>2631.0</td>
-      <td>2631.0</td>
-      <td>2498.0</td>
-      <td>2025.0</td>
+      <td>3.462</td>
+      <td>0.805</td>
+      <td>2.021</td>
+      <td>5.033</td>
+      <td>0.014</td>
+      <td>0.01</td>
+      <td>3208.0</td>
+      <td>3208.0</td>
+      <td>3141.0</td>
+      <td>2308.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1067,10 +1069,11 @@ with pm.Model() as ZIP_reg:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:18<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:11<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 25 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 17 seconds.
+    The acceptance probability does not match the target. It is 0.8982315566653549, but should be close to 0.8. Try to increase the number of tuning steps.
 
 <div>
     <style>
@@ -1086,7 +1089,7 @@ with pm.Model() as ZIP_reg:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:04<00:00]
+  100.00% [4000/4000 00:03<00:00]
 </div>
 
 ```python
@@ -1180,7 +1183,7 @@ fish_pred_df = pd.concat([df1, df2]).astype({"fish_count": "int64"})
 
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_53_0.png)
 
-    <ggplot: (316150956)>
+    <ggplot: (8762919614278)>
 
 ## Robust logistic regression
 
@@ -1188,6 +1191,40 @@ fish_pred_df = pd.concat([df1, df2]).astype({"fish_count": "int64"})
 
 - a minimal interface for basic and simple models
     - uses the *formula mini-language* from R (uses ['Patsy'](https://patsy.readthedocs.io/en/latest/index.html) under-the-hood)
+
+---
+
+```python
+%load_ext watermark
+%watermark -d -u -v -iv -b -h -m
+```
+
+    Last updated: 2021-01-04
+    
+    Python implementation: CPython
+    Python version       : 3.9.1
+    IPython version      : 7.19.0
+    
+    Compiler    : Clang 10.0.0 
+    OS          : Darwin
+    Release     : 20.1.0
+    Machine     : x86_64
+    Processor   : i386
+    CPU cores   : 4
+    Architecture: 64bit
+    
+    Hostname: JHCookMac.local
+    
+    Git branch: master
+    
+    pymc3     : 3.9.3
+    scipy     : 1.6.0
+    seaborn   : 0.11.1
+    matplotlib: 3.3.3
+    numpy     : 1.19.4
+    plotnine  : 0.7.1
+    pandas    : 1.2.0
+    arviz     : 0.10.0
 
 ```python
 

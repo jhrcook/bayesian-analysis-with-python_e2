@@ -1,0 +1,12 @@
+name: bayesian-analysis-with-python_e2
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - pymc3=3.9.3
+  - jupyterlab
+  - jupyterlab_code_formatter
+  - isort
+  - black
+  - nbconvert
+prefix: /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2

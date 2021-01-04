@@ -10,14 +10,16 @@
     - variable variance
 
 ```python
-import numpy as np
-import pandas as pd
-from scipy import stats
-import pymc3 as pm
 import arviz as az
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import pymc3 as pm
 import seaborn as sns
+from scipy import stats
 from theano import shared
+
+%config InlineBackend.figure_format = 'retina'
 ```
 
 ## Simple linear regression
@@ -106,10 +108,10 @@ with pm.Model() as model_g:
         }
     </style>
   <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [8000/8000 00:49<00:00 Sampling 2 chains, 1 divergences]
+  100.00% [8000/8000 00:26<00:00 Sampling 2 chains, 1 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 2_000 draw iterations (4_000 + 4_000 draws total) took 61 seconds.
+    Sampling 2 chains for 2_000 tune and 2_000 draw iterations (4_000 + 4_000 draws total) took 41 seconds.
     There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
 
 ```python
@@ -153,7 +155,7 @@ with model_g:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:07<00:00]
+  100.00% [4000/4000 00:04<00:00]
 </div>
 
 ```python
@@ -163,7 +165,7 @@ az.plot_ppc(
 plt.show()
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/data/io_pymc3.py:85: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/data/io_pymc3.py:87: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
       warnings.warn(
 
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_13_1.png)
@@ -238,7 +240,7 @@ plt.show()
 ppc = pm.sample_posterior_predictive(trace_g, samples=2000, model=model_g)
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/pymc3/sampling.py:1617: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/pymc3/sampling.py:1707: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
       warnings.warn(
 
 <div>
@@ -255,7 +257,7 @@ ppc = pm.sample_posterior_predictive(trace_g, samples=2000, model=model_g)
         }
     </style>
   <progress value='2000' class='' max='2000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [2000/2000 00:03<00:00]
+  100.00% [2000/2000 00:02<00:00]
 </div>
 
 ```python
@@ -273,9 +275,9 @@ plt.ylabel("y", fontsize=16)
 plt.show()
 ```
 
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/stats/stats.py:484: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
       warnings.warn(
-    /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
+    /usr/local/Caskroom/miniconda/base/envs/bayesian-analysis-with-python_e2/lib/python3.9/site-packages/arviz/stats/stats.py:484: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
       warnings.warn(
 
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_23_1.png)
@@ -370,10 +372,10 @@ with pm.Model() as unpooled_model:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:20<00:00 Sampling 2 chains, 4 divergences]
+  100.00% [6000/6000 00:11<00:00 Sampling 2 chains, 4 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 29 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 20 seconds.
     There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
     There were 3 divergences after tuning. Increase `target_accept` or reparameterize.
 
@@ -436,10 +438,10 @@ with pm.Model() as hierarchical_model:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:21<00:00 Sampling 2 chains, 60 divergences]
+  100.00% [4000/4000 00:11<00:00 Sampling 2 chains, 60 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 28 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 20 seconds.
     There were 37 divergences after tuning. Increase `target_accept` or reparameterize.
     There were 23 divergences after tuning. Increase `target_accept` or reparameterize.
     The number of effective samples is smaller than 25% for some parameters.
@@ -537,10 +539,10 @@ with pm.Model() as model_poly:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:18<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:09<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 25 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 17 seconds.
 
 ```python
 x_p = np.linspace(-6, 6)
@@ -643,10 +645,10 @@ with pm.Model() as model_mlr:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:12<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:07<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 19 seconds.
+    Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 14 seconds.
 
 ```python
 az_trace_mlr = az.from_pymc3(trace=trace_mlr, model=model_mlr)
@@ -688,58 +690,58 @@ az.summary(az_trace_mlr, var_names=var_names)
   <tbody>
     <tr>
       <th>α[0]</th>
-      <td>1.857</td>
-      <td>0.449</td>
-      <td>0.985</td>
-      <td>2.654</td>
+      <td>1.850</td>
+      <td>0.453</td>
+      <td>1.056</td>
+      <td>2.739</td>
       <td>0.006</td>
       <td>0.004</td>
-      <td>5521.0</td>
-      <td>5058.0</td>
-      <td>5493.0</td>
-      <td>2968.0</td>
+      <td>6270.0</td>
+      <td>5615.0</td>
+      <td>6231.0</td>
+      <td>3180.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>β[0]</th>
-      <td>0.968</td>
-      <td>0.044</td>
-      <td>0.890</td>
-      <td>1.052</td>
+      <td>0.969</td>
+      <td>0.043</td>
+      <td>0.884</td>
+      <td>1.047</td>
       <td>0.001</td>
       <td>0.000</td>
-      <td>5515.0</td>
-      <td>5515.0</td>
-      <td>5470.0</td>
-      <td>3076.0</td>
+      <td>6152.0</td>
+      <td>6152.0</td>
+      <td>6169.0</td>
+      <td>3155.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>β[1]</th>
-      <td>1.470</td>
-      <td>0.032</td>
-      <td>1.412</td>
-      <td>1.531</td>
+      <td>1.469</td>
+      <td>0.033</td>
+      <td>1.414</td>
+      <td>1.535</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>5716.0</td>
-      <td>5703.0</td>
-      <td>5709.0</td>
-      <td>3379.0</td>
+      <td>5854.0</td>
+      <td>5854.0</td>
+      <td>5852.0</td>
+      <td>3051.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>ϵ</th>
       <td>0.474</td>
       <td>0.036</td>
-      <td>0.408</td>
-      <td>0.541</td>
+      <td>0.406</td>
+      <td>0.537</td>
       <td>0.000</td>
       <td>0.000</td>
-      <td>5665.0</td>
-      <td>5585.0</td>
-      <td>5675.0</td>
-      <td>3004.0</td>
+      <td>5650.0</td>
+      <td>5593.0</td>
+      <td>5639.0</td>
+      <td>2766.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -816,10 +818,10 @@ with pm.Model() as model_vv:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:20<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:07<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 31 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
 
 ```python
 plt.figure(figsize=(10, 7))
@@ -874,7 +876,7 @@ y_ppc
         }
     </style>
   <progress value='2000' class='' max='2000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [2000/2000 00:08<00:00]
+  100.00% [2000/2000 00:03<00:00]
 </div>
 
     array([54.3918917 , 53.89657183, 53.57404815, ..., 57.92876611,
@@ -885,3 +887,36 @@ ppc["y_pred"].shape
 ```
 
     (2000, 800)
+
+---
+
+```python
+%load_ext watermark
+%watermark -d -u -v -iv -b -h -m
+```
+
+    Last updated: 2021-01-04
+    
+    Python implementation: CPython
+    Python version       : 3.9.1
+    IPython version      : 7.19.0
+    
+    Compiler    : Clang 10.0.0 
+    OS          : Darwin
+    Release     : 20.1.0
+    Machine     : x86_64
+    Processor   : i386
+    CPU cores   : 4
+    Architecture: 64bit
+    
+    Hostname: JHCookMac.local
+    
+    Git branch: master
+    
+    arviz     : 0.10.0
+    pymc3     : 3.9.3
+    numpy     : 1.19.4
+    matplotlib: 3.3.3
+    pandas    : 1.2.0
+    seaborn   : 0.11.1
+    scipy     : 1.6.0
