@@ -4,7 +4,6 @@
 2. Infinite mixture models
 3. Continuous mixture models
 
-
 ```python
 import numpy as np
 import pandas as pd
@@ -40,7 +39,6 @@ $$
         - called a *latent* variable
 - example using chemical shift data (from protein NMR)
 
-
 ```python
 (
     gg.ggplot(cs, gg.aes("exp"))
@@ -53,22 +51,14 @@ $$
 )
 ```
 
-
 ![png](06_mixture-models_files/06_mixture-models_4_0.png)
 
-
-
-
-
     <ggplot: (314247069)>
-
-
 
 ### The categorical distribution
 
 - most general discrete distribution
 - parameterized using a parameter specifying the probabilities of each possible outcome
-
 
 ```python
 example_cat_data = pd.DataFrame(
@@ -86,16 +76,9 @@ example_cat_data = pd.DataFrame(
 )
 ```
 
-
 ![png](06_mixture-models_files/06_mixture-models_6_0.png)
 
-
-
-
-
     <ggplot: (314089954)>
-
-
 
 ### The Dirichlet distribution
 
@@ -113,7 +96,6 @@ example_cat_data = pd.DataFrame(
     - $\sigma_\mu$ and $\sigma_\sigma$ are shared for all groups
 
 ![](assets/ch06/Dirichlet-prior-mixture-model.png)
-
 
 ```python
 # NOTE: We expect this  model to fit poorly.
@@ -138,7 +120,6 @@ with pm.Model() as model_kg:
     - can consider $z$ is nuisance variable and marginalize to get $\Pr(y | \theta)$
     - can do this in PyMC3 using the `NormalMixture()` distribution to get a Gaussian mixture model
 
-
 ```python
 clusters = 2
 
@@ -157,16 +138,13 @@ with pm.Model() as model_mg:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [sd, means, p]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -177,38 +155,26 @@ with pm.Model() as model_mg:
   100.00% [4000/4000 00:18<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 29 seconds.
     The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
     The estimated number of effective samples is smaller than 200 for some parameters.
 
-
-
 ```python
 az_trace_mg  = az.from_pymc3(trace_mg, model=model_mg)
 ```
-
 
 ```python
 az.plot_trace(az_trace_mg, var_names=['means', 'p'])
 plt.show()
 ```
 
-
 ![png](06_mixture-models_files/06_mixture-models_12_0.png)
-
-
 
 ```python
 az.summary(trace_mg, var_names=['means', 'p'])
 ```
 
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/data/io_pymc3.py:85: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
-
-
-
-
 
 <div>
 <style scoped>
@@ -302,10 +268,7 @@ az.summary(trace_mg, var_names=['means', 'p'])
 </table>
 </div>
 
-
-
 ### Non-identifiability of mixture models
-
 
 ```python
 

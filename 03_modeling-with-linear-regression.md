@@ -9,7 +9,6 @@
     - interactions
     - variable variance
 
-
 ```python
 import numpy as np
 import pandas as pd
@@ -33,7 +32,7 @@ from theano import shared
 
 $$y \sim \mathcal{N}(\mu = \alpha + x \beta, \epsilon)$$
 
->  A linear regression model is an extension of the Gaussian model where the mean is not directly estimated but rather computed as a linear function of a predictor variable and some additional parameters.
+> A linear regression model is an extension of the Gaussian model where the mean is not directly estimated but rather computed as a linear function of a predictor variable and some additional parameters.
 
 - set priors for the variables in the equation
 
@@ -45,9 +44,7 @@ $$
 
 <img src="assets/ch03/c5c481c3-353f-4b8f-9764-d166813e263e.png" width="75%">
 
-
 - an example of fitting a linear regression with fake data
-
 
 ```python
 np.random.seed(1)
@@ -74,12 +71,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_6_0.png)
 
-
 - I modified the priors in the model below from those provided in the book because the MCMC had too many divergences.
-
 
 ```python
 with pm.Model() as model_g:
@@ -98,16 +92,13 @@ with pm.Model() as model_g:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [ϵ, β, α]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -118,12 +109,8 @@ with pm.Model() as model_g:
   100.00% [8000/8000 00:49<00:00 Sampling 2 chains, 1 divergences]
 </div>
 
-
-
     Sampling 2 chains for 2_000 tune and 2_000 draw iterations (4_000 + 4_000 draws total) took 61 seconds.
     There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
-
-
 
 ```python
 az_trace_g = az.from_pymc3(trace_g, model=model_g)
@@ -131,45 +118,34 @@ az.plot_trace(az_trace_g, var_names=["α", "β", "ϵ"])
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_9_0.png)
-
-
 
 ```python
 az.plot_autocorr(az_trace_g, var_names=["α", "β", "ϵ"])
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_10_0.png)
-
-
 
 ```python
 az.plot_forest(az_trace_g, var_names=["α", "β", "ϵ"])
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_11_0.png)
-
-
 
 ```python
 with model_g:
     model_g_ppc = pm.sample_posterior_predictive(trace_g)
 ```
 
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -179,9 +155,6 @@ with model_g:
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
   100.00% [4000/4000 00:07<00:00]
 </div>
-
-
-
 
 ```python
 az.plot_ppc(
@@ -193,10 +166,7 @@ plt.show()
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/data/io_pymc3.py:85: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
       warnings.warn(
 
-
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_13_1.png)
-
 
 ### Linear models and high autocorrelation
 
@@ -205,15 +175,12 @@ plt.show()
     - this results in a diagonal posterior space that can be problematic for the sampling process
     - this will be discussed further in later chapters
 
-
 ```python
 az.plot_pair(az_trace_g, var_names=["α", "β"], scatter_kwargs={"alpha": 0.1})
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_15_0.png)
-
 
 #### Modifying the data before running
 
@@ -223,7 +190,6 @@ plt.show()
     - otherwise would need to consider the scale of the data
 
 ### Interpreting and visualizing the posterior
-
 
 ```python
 # Plot lines sample from the posterior.
@@ -246,12 +212,9 @@ plt.legend(fontsize=12)
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_18_0.png)
 
-
 - plot the **highest density interval (HDI)**
-
 
 ```python
 plt.plot(x, alpha_m + beta_m * x, c="k", label=f"y = {alpha_m:.2f} + {beta_m:.2f} * x")
@@ -266,13 +229,10 @@ plt.legend()
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_20_0.png)
-
 
 - also plot the HDI for $\hat{y}$
     - where the model expects to see the given percent of the data
-
 
 ```python
 ppc = pm.sample_posterior_predictive(trace_g, samples=2000, model=model_g)
@@ -281,16 +241,13 @@ ppc = pm.sample_posterior_predictive(trace_g, samples=2000, model=model_g)
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/pymc3/sampling.py:1617: UserWarning: samples parameter is smaller than nchains times ndraws, some draws and/or chains may not be represented in the returned posterior predictive sample
       warnings.warn(
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -300,9 +257,6 @@ ppc = pm.sample_posterior_predictive(trace_g, samples=2000, model=model_g)
   <progress value='2000' class='' max='2000' style='width:300px; height:20px; vertical-align: middle;'></progress>
   100.00% [2000/2000 00:03<00:00]
 </div>
-
-
-
 
 ```python
 plt.plot(x, y, "b.")
@@ -324,10 +278,7 @@ plt.show()
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
       warnings.warn(
 
-
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_23_1.png)
-
 
 ### Pearson correlation coefficient
 
@@ -339,7 +290,6 @@ plt.show()
 
 - create 8 related data groups
     - one group will only have 1 data point
-
 
 ```python
 N = 20
@@ -374,12 +324,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_25_0.png)
 
-
 - center the data before fitting model
-
 
 ```python
 x_centered = x_m - x_m.mean()
@@ -387,7 +334,6 @@ x_centered = x_m - x_m.mean()
 
 - fit a non-hierarchical model for comparison
     - there is also a line that rescales $\alpha$ to adjust for the centering
-
 
 ```python
 with pm.Model() as unpooled_model:
@@ -410,16 +356,13 @@ with pm.Model() as unpooled_model:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [ν, ϵ, β, α_temp]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -430,34 +373,22 @@ with pm.Model() as unpooled_model:
   100.00% [6000/6000 00:20<00:00 Sampling 2 chains, 4 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 29 seconds.
     There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
     There were 3 divergences after tuning. Increase `target_accept` or reparameterize.
-
-
 
 ```python
 az_trace_up = az.from_pymc3(trace_up, model=unpooled_model)
 az.plot_forest(az_trace_up, var_names=["α", "β"], combined=True)
 ```
 
-
-
-
     array([<AxesSubplot:title={'center':'94.0% HDI'}>], dtype=object)
 
-
-
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_30_1.png)
-
 
 - now fit a hierarchical model with priors on the parameters of $\alpha$ and $\beta$
 
 <img src="assets/ch03/hierarchcical-model-diagram.png" width="75%">
-
 
 ```python
 with pm.Model() as hierarchical_model:
@@ -491,16 +422,13 @@ with pm.Model() as hierarchical_model:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [ν, ϵ, β, α_temp, β_σ, β_µ, α_σ_temp, α_µ_temp]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -511,14 +439,10 @@ with pm.Model() as hierarchical_model:
   100.00% [4000/4000 00:21<00:00 Sampling 2 chains, 60 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 28 seconds.
     There were 37 divergences after tuning. Increase `target_accept` or reparameterize.
     There were 23 divergences after tuning. Increase `target_accept` or reparameterize.
     The number of effective samples is smaller than 25% for some parameters.
-
-
 
 ```python
 az_trace_hm = az.from_pymc3(trace_hm, model=hierarchical_model)
@@ -526,10 +450,7 @@ az.plot_forest(az_trace_hm, var_names=["α", "β"], combined=True)
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_33_0.png)
-
-
 
 ```python
 fix, ax = plt.subplots(
@@ -560,16 +481,13 @@ for i in range(M):
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_34_0.png)
-
 
 ### Correlation, causation, and the messiness of life
 
 ## Polynomial regression
 
 - example of fitting a polynomial regression
-
 
 ```python
 ans = pd.read_csv("data/anscombe.csv")
@@ -582,17 +500,9 @@ plt.xlabel("x")
 plt.ylabel("y", rotation=0)
 ```
 
-
-
-
     Text(0, 0.5, 'y')
 
-
-
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_36_1.png)
-
-
 
 ```python
 with pm.Model() as model_poly:
@@ -613,16 +523,13 @@ with pm.Model() as model_poly:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [ϵ, β2, β1, α]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -633,11 +540,7 @@ with pm.Model() as model_poly:
   100.00% [6000/6000 00:18<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 25 seconds.
-
-
 
 ```python
 x_p = np.linspace(-6, 6)
@@ -653,9 +556,7 @@ plt.plot(x_p, y_p, c="C1")
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_38_0.png)
-
 
 ### Interpreting the parameters of a polynomial regression
 
@@ -672,7 +573,6 @@ $$
 $$
 
 - mock data for an example
-
 
 ```python
 np.random.seed(314)
@@ -703,14 +603,11 @@ def scatter_plot(x, y):
 scatter_plot(X_centered, y)
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_40_0.png)
-
 
 - the model for the multivariate model is simillar to the univariate, but with a few modifications:
     - the variable $\beta$ is a Gaussian *with shape 2*
     - define the variable $\mu$ as a dot product of $X$ and $\beta$
-
 
 ```python
 with pm.Model() as model_mlr:
@@ -732,16 +629,13 @@ with pm.Model() as model_mlr:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [ϵ, β, α_temp]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -752,20 +646,13 @@ with pm.Model() as model_mlr:
   100.00% [6000/6000 00:12<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 19 seconds.
-
-
 
 ```python
 az_trace_mlr = az.from_pymc3(trace=trace_mlr, model=model_mlr)
 var_names = ["α", "β", "ϵ"]
 az.summary(az_trace_mlr, var_names=var_names)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -859,17 +746,12 @@ az.summary(az_trace_mlr, var_names=var_names)
 </table>
 </div>
 
-
-
-
 ```python
 az.plot_trace(az_trace_mlr, var_names=var_names)
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_44_0.png)
-
 
 ### Confounding variables and redundant variables
 
@@ -884,23 +766,19 @@ plt.show()
 - can use a linear model to model the variance of the data when the assumption of constant variance is not appropriate
 - example: WHO data in baby length as a measure of age
 
-
 ```python
 data = pd.read_csv("data/babies.csv").rename({"Lenght": "Length"}, axis=1)
 data.plot.scatter("Month", "Length")
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_46_0.png)
-
 
 - three new elements to the previous linear models:
     - $\epsilon$ as a linear function of $x$ with a parameters $\gamma$ and $\delta$ as analogs of $\alpha$ and $\beta$
     - the linear model for the mean is a function of $\sqrt{x}$ because the data has a curve
     - include a shared variance `x_shared` to change the values of $x$ without needing to refit the model (continue further in the notes to see why this is useful)
         - this does not work as the author intended, so just ignore it for now
-
 
 ```python
 with pm.Model() as model_vv:
@@ -924,16 +802,13 @@ with pm.Model() as model_vv:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [ẟ, γ, β, α]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -944,11 +819,7 @@ with pm.Model() as model_vv:
   100.00% [4000/4000 00:20<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 31 seconds.
-
-
 
 ```python
 plt.figure(figsize=(10, 7))
@@ -972,24 +843,15 @@ plt.ylabel("y", fontsize=15, rotation=0)
 plt.show()
 ```
 
-
 ![png](03_modeling-with-linear-regression_files/03_modeling-with-linear-regression_49_0.png)
 
-
 - want to get a prediction from the model on input it has never seen
-
 
 ```python
 x_shared.get_value().shape
 ```
 
-
-
-
     (800,)
-
-
-
 
 ```python
 x_shared.set_value([0.5])
@@ -998,15 +860,13 @@ y_ppc = ppc["y_pred"][:, 0]
 y_ppc
 ```
 
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -1017,24 +877,11 @@ y_ppc
   100.00% [2000/2000 00:08<00:00]
 </div>
 
-
-
-
-
-
     array([54.3918917 , 53.89657183, 53.57404815, ..., 57.92876611,
            52.80837472, 51.47306132])
-
-
-
 
 ```python
 ppc["y_pred"].shape
 ```
 
-
-
-
     (2000, 800)
-
-

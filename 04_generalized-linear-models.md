@@ -1,6 +1,5 @@
 # Ch 4. Generalized Linear Models
 
-
 ```python
 import numpy as np
 import pandas as pd
@@ -24,7 +23,6 @@ $$
 \text{logistic}(z) = \frac{1}{1 + e^{-z}}
 $$
 
-
 ```python
 z = np.linspace(-8, 8)
 y = 1 / (1 + np.exp(-z))
@@ -34,9 +32,7 @@ plt.ylabel("y = logisitc(z)")
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_3_0.png)
-
 
 ### The logistic model
 
@@ -49,14 +45,10 @@ $$
 
 ### The Iris dataset
 
-
 ```python
 iris = pd.read_csv("data/iris.csv")
 iris.head()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -128,33 +120,24 @@ iris.head()
 </table>
 </div>
 
-
-
-
 ```python
 sns.stripplot(x="species", y="sepal_length", data=iris, jitter=True)
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_7_0.png)
-
-
 
 ```python
 sns.pairplot(iris, hue="species", diag_kind="kde")
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_8_0.png)
-
 
 #### The logistic model applied to the Iris dataset
 
 - classify `setosa` vs. `versicolor` using `sepal_length` as the only predictor
     - encode the species as 0 and 1, respectively
-
 
 ```python
 df = iris.query("species == ('setosa', 'versicolor')")
@@ -167,7 +150,6 @@ x_c = x_0 - x_0.mean()  # center the data
 - two deterministic variables in this model:
     - `θ`: ouput of the logistic function applied to `µ`
     - `bd`: the "boundary decision" is the value of the predictor variable used to separate classes
-
 
 ```python
 with pm.Model() as model_0:
@@ -188,16 +170,13 @@ with pm.Model() as model_0:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [β, α]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -208,11 +187,7 @@ with pm.Model() as model_0:
   100.00% [4000/4000 00:07<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 15 seconds.
-
-
 
 ```python
 az_trace_0 = az.from_pymc3(trace_0, model=model_0)
@@ -220,17 +195,11 @@ az.plot_trace(az_trace_0, var_names=["α", "β"])
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_13_0.png)
-
-
 
 ```python
 az.summary(az_trace_0)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -423,9 +392,6 @@ az.summary(az_trace_0)
 <p>103 rows × 11 columns</p>
 </div>
 
-
-
-
 ```python
 theta = trace_0["θ"].mean(axis=0)
 idx = np.argsort(x_c)
@@ -446,13 +412,9 @@ plt.show()
 
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
 
-
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_15_1.png)
 
-
 ## Multiple logistic regression
-
 
 ```python
 df = iris.query("species == ('setosa', 'versicolor')")
@@ -469,7 +431,6 @@ x_2 = - \frac{\alpha}{\beta_2} - \frac{\beta_1}{\beta_2}x_1
 $$
 
 ### Implementing the model
-
 
 ```python
 with pm.Model() as model_1:
@@ -494,16 +455,13 @@ az_trace_1 = az.from_pymc3(trace=trace_1, model=model_1)
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [beta, alpha]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -514,23 +472,16 @@ az_trace_1 = az.from_pymc3(trace=trace_1, model=model_1)
   100.00% [6000/6000 00:35<00:00 Sampling 2 chains, 1 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 42 seconds.
     There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
     The number of effective samples is smaller than 25% for some parameters.
-
-
 
 ```python
 az.plot_trace(az_trace_1, var_names=["alpha", "beta"])
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_21_0.png)
-
-
 
 ```python
 idx = np.argsort(x_1[:, 0])
@@ -545,10 +496,7 @@ plt.show()
 
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
 
-
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_22_1.png)
-
 
 ### Interpreting the coefficients of a logisitic regression
 
@@ -573,8 +521,7 @@ $$
 ### Dealing with unbalanced classes
 
 - logistic regression had difficulty finding the boundary when the classes are unbalanced
-- for an example, we will use the Iris data set 
-
+- for an example, we will use the Iris data set
 
 ```python
 df = iris.query("species == ('setosa', 'versicolor')")
@@ -583,7 +530,6 @@ y_3 = pd.Categorical(df.species).codes
 x_n = ["sepal_length", "sepal_width"]
 x_3 = df[x_n].values
 ```
-
 
 ```python
 with pm.Model() as model_3:
@@ -606,16 +552,13 @@ with pm.Model() as model_3:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [beta, alpha]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -626,29 +569,21 @@ with pm.Model() as model_3:
   100.00% [6000/6000 00:24<00:00 Sampling 2 chains, 199 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 33 seconds.
     There were 50 divergences after tuning. Increase `target_accept` or reparameterize.
     There were 149 divergences after tuning. Increase `target_accept` or reparameterize.
     The number of effective samples is smaller than 10% for some parameters.
 
-
-
 ```python
 az_trace_3 = az.from_pymc3(trace=trace_3, model=model_3)
 ```
-
 
 ```python
 az.plot_trace(az_trace_3, var_names=["alpha", "beta"])
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_29_0.png)
-
-
 
 ```python
 idx = np.argsort(x_3[:, 0])
@@ -663,10 +598,7 @@ plt.show()
 
     /Users/admin/Developer/Python/bayesian-analysis-with-python_e2/.env/lib/python3.8/site-packages/arviz/stats/stats.py:483: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
 
-
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_30_1.png)
-
 
 - options to fix the problem of unbalanced data:
     - collect equal amounts of all classes (not always possible)
@@ -700,7 +632,6 @@ $$
 f(x|\mu) = \frac{e^{-\mu} \mu^x}{x!}
 $$
 
-
 ```python
 mu_params = [0.5, 1.5, 3, 8]
 x = np.arange(0, max(mu_params) * 3)
@@ -713,9 +644,7 @@ plt.ylabel("f(x)")
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_35_0.png)
-
 
 - Poisson distribution is a special case of binomial distribution when the number of trials $n$ is very large and the probability of success $p$ is very low
 
@@ -731,7 +660,6 @@ $$
 $$
 
 - example with mock data
-
 
 ```python
 n = 100
@@ -757,19 +685,11 @@ counts_df = pd.DataFrame({"x": counts})
 )
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_38_0.png)
-
-
-
-
 
     <ggplot: (310338708)>
 
-
-
 - fit model with built-in zero-inflated Poisson function
-
 
 ```python
 with pm.Model() as ZIP:
@@ -784,16 +704,13 @@ with pm.Model() as ZIP:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [theta, psi]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -804,33 +721,22 @@ with pm.Model() as ZIP:
   100.00% [6000/6000 00:10<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 19 seconds.
-
-
 
 ```python
 az_trace_zip = az.from_pymc3(trace=trace_zip, model=ZIP)
 ```
-
 
 ```python
 az.plot_trace(az_trace_zip)
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_42_0.png)
-
-
 
 ```python
 az.summary(az_trace_zip)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -896,8 +802,6 @@ az.summary(az_trace_zip)
 </table>
 </div>
 
-
-
 ### Poisson regression and ZIP regression
 
 - can use the Poisson or ZIP in a linear regression
@@ -911,14 +815,10 @@ $$
     - data: `count`: number of fish caught, `child`: number of children in group, `camper`: if they brought a camper
     - model: the number of fish caught
 
-
 ```python
 fish_data = pd.read_csv("data/fish.csv")
 fish_data.head()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1008,15 +908,9 @@ fish_data.head()
 </table>
 </div>
 
-
-
-
 ```python
 fish_data.describe()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1139,9 +1033,6 @@ fish_data.describe()
 </table>
 </div>
 
-
-
-
 ```python
 with pm.Model() as ZIP_reg:
     psi = pm.Beta("psi", 1, 1)
@@ -1162,16 +1053,13 @@ with pm.Model() as ZIP_reg:
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [beta, alpha, psi]
 
-
-
-
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -1182,20 +1070,15 @@ with pm.Model() as ZIP_reg:
   100.00% [6000/6000 00:18<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-
-
     Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 25 seconds.
-
-
-
 
 <div>
     <style>
-        /* Turns off some styling */
+        /*Turns off some styling*/
         progress {
-            /* gets rid of default border in Firefox and Opera. */
+            /*gets rid of default border in Firefox and Opera.*/
             border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
             background-size: auto;
         }
         .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
@@ -1206,35 +1089,25 @@ with pm.Model() as ZIP_reg:
   100.00% [4000/4000 00:04<00:00]
 </div>
 
-
-
-
 ```python
 az_trace_ZIP_reg = az.from_pymc3(
     trace_ZIP_reg, model=ZIP_reg, posterior_predictive=ZIP_reg_ppc
 )
 ```
 
-
 ```python
 az.plot_trace(az_trace_ZIP_reg, var_names=["psi", "alpha", "beta"])
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_49_0.png)
-
-
 
 ```python
 az.plot_posterior(az_trace_ZIP_reg, var_names=["psi", "alpha", "beta"])
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_50_0.png)
-
-
 
 ```python
 az.plot_ppc(az_trace_ZIP_reg)
@@ -1242,10 +1115,7 @@ plt.xlim((0, 40))
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_51_0.png)
-
-
 
 ```python
 children = list(range(5))
@@ -1271,10 +1141,7 @@ plt.legend(loc="upper right")
 plt.show()
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_52_0.png)
-
-
 
 ```python
 df1 = pd.DataFrame(
@@ -1311,16 +1178,9 @@ fish_pred_df = pd.concat([df1, df2]).astype({"fish_count": "int64"})
 )
 ```
 
-
 ![png](04_generalized-linear-models_files/04_generalized-linear-models_53_0.png)
 
-
-
-
-
     <ggplot: (316150956)>
-
-
 
 ## Robust logistic regression
 
@@ -1328,7 +1188,6 @@ fish_pred_df = pd.concat([df1, df2]).astype({"fish_count": "int64"})
 
 - a minimal interface for basic and simple models
     - uses the *formula mini-language* from R (uses ['Patsy'](https://patsy.readthedocs.io/en/latest/index.html) under-the-hood)
-
 
 ```python
 
