@@ -61,7 +61,7 @@ cs_exp = cs["exp"]
 
 ![png](06_mixture-models_files/06_mixture-models_4_0.png)
 
-    <ggplot: (8767949462122)>
+    <ggplot: (8768203148373)>
 
 ### The categorical distribution
 
@@ -88,7 +88,7 @@ example_cat_data = pd.DataFrame(
 
 ![png](06_mixture-models_files/06_mixture-models_6_0.png)
 
-    <ggplot: (8767949462101)>
+    <ggplot: (8768201942007)>
 
 ### The Dirichlet distribution
 
@@ -168,10 +168,10 @@ with pm.Model() as model_mg:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:22<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:18<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 32 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 25 seconds.
     The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
     The estimated number of effective samples is smaller than 200 for some parameters.
 
@@ -335,10 +335,10 @@ with pm.Model() as model_mgp:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:22<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:19<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 32 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 26 seconds.
 
 ```python
 varnames = ["means", "p"]
@@ -489,7 +489,7 @@ for cluster in clusters:
             mu=np.linspace(cs_exp.min(), cs_exp.max(), cluster),
             sd=10,
             shape=cluster,
-            transform = pm.distributions.transforms.ordered
+            transform=pm.distributions.transforms.ordered,
         )
         sd = pm.HalfNormal("sd", sd=10)
 
@@ -519,10 +519,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:48<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:53<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 58 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 60 seconds.
     Auto-assigning NUTS sampler...
     Initializing NUTS using jitter+adapt_diag...
     Multiprocess sampling (2 chains in 2 jobs)
@@ -542,10 +542,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:47<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:49<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 54 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 57 seconds.
     Auto-assigning NUTS sampler...
     Initializing NUTS using jitter+adapt_diag...
     Multiprocess sampling (2 chains in 2 jobs)
@@ -565,10 +565,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 01:12<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 01:28<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 79 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 95 seconds.
     Auto-assigning NUTS sampler...
     Initializing NUTS using jitter+adapt_diag...
     Multiprocess sampling (2 chains in 2 jobs)
@@ -588,10 +588,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 02:07<00:00 Sampling 2 chains, 23 divergences]
+  100.00% [6000/6000 02:15<00:00 Sampling 2 chains, 23 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 135 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 144 seconds.
     There were 23 divergences after tuning. Increase `target_accept` or reparameterize.
     The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
     The estimated number of effective samples is smaller than 200 for some parameters.
@@ -600,6 +600,7 @@ for cluster in clusters:
 
 ```python
 trace = traces[0]
+
 
 def sample_ppc(trace, x_):
     idx = np.random.randint(0, len(trace))
@@ -610,6 +611,7 @@ def sample_ppc(trace, x_):
     y = np.sum(dist.pdf(x_) * p_y, 1)
     return y
 
+
 def sample_ppcs(trace, x, n_clusters, n=50):
     x_ = np.array([x] * n_clusters).T
     data = {i: sample_ppc(trace, x_) for i in range(n)}
@@ -617,6 +619,7 @@ def sample_ppcs(trace, x, n_clusters, n=50):
     data["x"] = x
     data = data.melt(id_vars="x", var_name="sample_idx", value_name="y")
     return data
+
 
 def sample_ppc_per_cluster(trace, x, n_clusters):
     x_ = np.array([x] * n_clusters).T
@@ -636,31 +639,15 @@ def sample_ppc_per_cluster(trace, x, n_clusters):
 def plot_mixture_model_ppc(sampled_ppc, cluster_ppc, n_clusters):
     summary_ppc_df = sampled_ppc.groupby("x").mean().reset_index(drop=False)
     p = (
-        gg.ggplot(
-            sampled_ppc,
-            gg.aes(x="x", y="y")
-        )
-        + gg.geom_line(
-            gg.aes(group="sample_idx"),
-            alpha=0.2,
-            color="#1075B7"
-        )
-        + gg.geom_line(
-            data=summary_ppc_df,
-            color="#004B8D",
-            size=1,
-            linetype="--"
-        )
-        + gg.geom_line(
-            gg.aes(group="cluster"),
-            data=cluster_ppc,
-            linetype="--"
-        )
+        gg.ggplot(sampled_ppc, gg.aes(x="x", y="y"))
+        + gg.geom_line(gg.aes(group="sample_idx"), alpha=0.2, color="#1075B7")
+        + gg.geom_line(data=summary_ppc_df, color="#004B8D", size=1, linetype="--")
+        + gg.geom_line(gg.aes(group="cluster"), data=cluster_ppc, linetype="--")
         + gg.theme(figure_size=(4, 4))
         + gg.labs(
             x="exp",
             y="expected density",
-            title=f"Mixture Model with {n_clusters} clusters"
+            title=f"Mixture Model with {n_clusters} clusters",
         )
     )
     return p
@@ -669,30 +656,26 @@ def plot_mixture_model_ppc(sampled_ppc, cluster_ppc, n_clusters):
 ```python
 x = np.linspace(cs_exp.min(), cs_exp.max(), 200)
 for n_clusters, trace in zip(clusters, traces):
-    ppc_df = sample_ppcs(
-        trace=trace, x=x, n_clusters=n_clusters
-    )
-    clusters_ppc_df = sample_ppc_per_cluster(
-        trace=trace, x=x, n_clusters=n_clusters
-    )
+    ppc_df = sample_ppcs(trace=trace, x=x, n_clusters=n_clusters)
+    clusters_ppc_df = sample_ppc_per_cluster(trace=trace, x=x, n_clusters=n_clusters)
     print(plot_mixture_model_ppc(ppc_df, clusters_ppc_df, n_clusters))
 ```
 
 ![png](06_mixture-models_files/06_mixture-models_24_0.png)
 
-    <ggplot: (8767943494705)>
+    <ggplot: (8768194858867)>
 
 ![png](06_mixture-models_files/06_mixture-models_24_2.png)
 
-    <ggplot: (8767945232782)>
+    <ggplot: (8768194847061)>
 
 ![png](06_mixture-models_files/06_mixture-models_24_4.png)
 
-    <ggplot: (8767960018303)>
+    <ggplot: (8768187121661)>
 
 ![png](06_mixture-models_files/06_mixture-models_24_6.png)
 
-    <ggplot: (8767959970726)>
+    <ggplot: (8768185986055)>
 
 ```python
 mm_comparison = az.compare(dict(zip(clusters, traces)), method="BB-pseudo-BMA")
@@ -743,8 +726,8 @@ mm_comparison
       <td>-5127.827401</td>
       <td>12.447644</td>
       <td>0.000000</td>
-      <td>0.736916</td>
-      <td>32.738849</td>
+      <td>0.760694</td>
+      <td>32.171885</td>
       <td>0.000000</td>
       <td>False</td>
       <td>log</td>
@@ -755,8 +738,8 @@ mm_comparison
       <td>-5129.245710</td>
       <td>9.899071</td>
       <td>1.418309</td>
-      <td>0.255827</td>
-      <td>32.235485</td>
+      <td>0.235350</td>
+      <td>31.679818</td>
       <td>1.213311</td>
       <td>False</td>
       <td>log</td>
@@ -767,8 +750,8 @@ mm_comparison
       <td>-5139.433919</td>
       <td>7.436035</td>
       <td>11.606518</td>
-      <td>0.007257</td>
-      <td>31.838099</td>
+      <td>0.003956</td>
+      <td>31.277297</td>
       <td>4.356708</td>
       <td>False</td>
       <td>log</td>
@@ -780,7 +763,7 @@ mm_comparison
       <td>6.042494</td>
       <td>50.820792</td>
       <td>0.000000</td>
-      <td>31.791915</td>
+      <td>31.258120</td>
       <td>8.935154</td>
       <td>False</td>
       <td>log</td>
@@ -801,21 +784,300 @@ plt.show()
 
 ### Mixture models and clustering
 
-```python
+- **model-based clustering**: using a probabilistic model to compute the probability of each data point to belong to each cluster
+    - a form of *soft-clustering* (instead of the binary *hard-clustering*)
 
+## Non-finite mixture model
+
+- get the number of clusters from the data using a **Dirichlet process (DP)**
+
+### Dirichlet process
+
+> Non-parametric models are models with a theoretically infinite number of parameters.
+In practice, we somehow let the data to reduce the theoretically infinite number of parameters to some finite number, in other words the data decides the actual number of parameters, thus non-parametric models are very flexible.
+
+- DP is the infinite-dimensional generalization of the Dirichlet distribution
+    - a single draw (a realization) of a DP is a distribution
+    - can use a DAP to assign a prior distribution to a non-fixed number of clusters
+        - can think of a DP as a way to sample from a prior distribution of distributions
+- some relevant properties of a DP:
+    - a DP is a distribution whose realizations are probability distributions
+    - is specified by a base distribution $\mathcal{H}$ and a positive real number $\alpha$ called the **concentration parameter**
+    - $\mathcal{H}$ is the expected value of the DP
+    - as $\alpha$ increased, the realizations become less concentrated
+    - on the limit $\alpha \to \infty$ the realizations from a DP will match those of the base distribution; thus if the base distribution is continuous, the DP will be continuous; this is *very rare* in practice
+    - in practice, the DP almost always generates a discrete distribution
+- can define a distribution by providing the probability $y$ of each possible value $x$
+    - the values for $x$ are determined by the type of distribution (e.g. a Gaussian is all real numbers, a Poisson are nonnegative real integers)
+    - the values for $y$ (must sum to 1) are generated using a *Gedankenexperiment* known as the **stick-breaking process**
+        - break a stick into 2 parts, break one of those pieces in 2, and so on for $K$ times
+        - $\alpha$ determines how small we break the sticks (larger $\alpha$ means smaller pieces and $\alpha \to \infty$ means breaking the stick into infinite pieces
+        - the following plot shows four results of this process from four different  values of $\alpha$ (an explanation of the function `stick_breaking_truncated()` is provided later)
+
+```python
+def stick_breaking_truncated(alpha, H, K):
+    betas = stats.beta.rvs(1, alpha, size=K)
+    w = np.empty(K)
+    w = betas * np.concatenate(([1.0], np.cumprod(1 - betas[:-1])))
+    locs = H.rvs(size=K)
+    return locs, w
+
+
+K = 500
+H = stats.norm  # DP base distribution: Gaussian normal
+alphas = [1, 10, 100, 1000]
+stick_break_res = None
+for idx, alpha in enumerate(alphas):
+    locs, w = stick_breaking_truncated(alpha, H, K)
+    data = pd.DataFrame({"locs": locs, "w": w, "alpha": f"$\\alpha$: {alpha}"})
+    if stick_break_res is None:
+        stick_break_res = data
+    else:
+        stick_break_res = pd.concat([stick_break_res, data])
+
+(
+    gg.ggplot(stick_break_res)
+    + gg.facet_wrap("alpha", scales="free")
+    + gg.geom_linerange(gg.aes(x="locs", ymin=0, ymax="w"), color="#0C73B4")
+    + gg.theme(subplots_adjust={"wspace": 0.25, "hspace": 0.5})
+    + gg.labs(
+        x="x",
+        y="probability",
+        title="Dirichlet process distributions at different concentration parameters $\\alpha$",
+    )
+)
 ```
 
-```python
+![png](06_mixture-models_files/06_mixture-models_30_0.png)
 
+    <ggplot: (8768172816788)>
+
+- notes on abovbe plot:
+    - the DP is a discrete distribution
+    - as $\alpha$ increases, the DP pieces get smaller and resemble the base distribution
+- the DP places a Gaussian (or whatever base distribution) at the location of each substick of the DP realization and scale/weight that Gaussian by the length of the substick
+    - below is an example of that process
+
+```python
+alpha = 10
+H = stats.norm
+K = 5
+
+np.random.seed(124)
+
+x = np.linspace(-4, 4, 250)
+locs, w = stick_breaking_truncated(alpha, H, K)
+print(f"locations: {locs}")
+print(f"weights: {w}")
 ```
 
-```python
+    locations: [ 0.44167705  0.80818623  0.23199239 -1.40035848  0.71590778]
+    weights: [0.00993163 0.03023728 0.15708906 0.08662139 0.03511271]
 
+```python
+dist = stats.norm(locs, 0.5)
+x_ = np.array([x] * K).T  # Make K copies of `x`
+prob = dist.pdf(x_) * w
+prob_cum = np.sum(prob, 1)
+
+data = pd.DataFrame(prob)
+data["x"] = x
+data = data.melt(id_vars="x", var_name="peak_idx", value_name="y")
+data["peak_idx"] = data["peak_idx"].astype(str)
+
+data_cum = pd.DataFrame({"x": x, "y": prob_cum})
+
+(
+    gg.ggplot(data_cum, gg.aes(x="x", y="y"))
+    + gg.geom_line(color="black", size=4, alpha=0.2)
+    + gg.geom_line(
+        gg.aes(color="peak_idx"), data=data, linetype="--", size=1, alpha=0.9
+    )
+    + gg.scale_color_brewer(type="qual", palette="Set1", guide=False)
+    + gg.labs(
+        x="x", y="probability", title="Example DP using the stick-breaking process"
+    )
+)
 ```
 
-```python
+![png](06_mixture-models_files/06_mixture-models_33_0.png)
 
+    <ggplot: (8768194840510)>
+
+- explanation of `stick_breaking_truncated()`:
+
+$$
+\sum_{k=1}^{\infty} w_k \cdot \delta_{\theta_k}(\theta) =
+\mathcal{f}(\theta) \sim DP(\alpha, \mathcal{H})
+$$
+
+- where:
+    - $\delta_{\theta_k}$: indicator function that evaluate to 0 everywhere except where $\delta_{\theta_k}(\theta) = 1$; these represent the locations sampled from the base distribution $\mathcal{H}$
+    - $w_k$: probabilities given by the following equation
+
+$$
+w_k = \beta^{\prime}_{k} \cdot \prod_{i=1}^{k-1} (1-\beta^{\prime}_{i})
+$$
+
+- where:
+    - $w_k$: length of a substick
+    - $\prod_{i=1}^{k-1} (1-\beta^{\prime}_{i})$ is the length of the remaining portion (the part of the stick to keep breaking)
+    - $\beta^\prime_k \sim \text{Beta}(1, \alpha)$: indicates how to break the remaining portion
+
+- can now try an example in PyMC3
+    - need a version of `stick_breaking()` that works with PyMC3
+    - also common to define the prior for $\alpha$ as a Gamma distribution
+
+```python
+def stick_breaking_pymc3(alpha, K):
+    beta = pm.Beta("beta", 1.0, alpha, shape=K)
+    w = beta * pm.math.concatenate([[1.0], tt.extra_ops.cumprod(1.0 - beta)[:-1]])
+    return w
+
+
+N = cs_exp.shape[0]
+K = 20
+
+with pm.Model() as model:
+    alpha = pm.Gamma("alpha", 1.0, 1.0)
+    w = pm.Deterministic("w", stick_breaking_pymc3(alpha, K))
+    means = pm.Normal("means", mu=cs_exp.mean(), sd=10, shape=K)
+
+    sd = pm.HalfNormal("sd", sd=10, shape=K)
+    obs = pm.NormalMixture("obs", w, means, sd=sd, observed=cs_exp.values)
+
+    trace = pm.sample(
+        draws=1000, init="advi", n_init=100000, tune=2000, target_accept=0.9
+    )
 ```
+
+    Auto-assigning NUTS sampler...
+    Initializing NUTS using advi...
+
+<div>
+    <style>
+        /*Turns off some styling*/
+        progress {
+            /*gets rid of default border in Firefox and Opera.*/
+            border: none;
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='56642' class='' max='400000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  14.16% [56642/400000 01:54<11:34 Average Loss = 5,262.9]
+</div>
+
+    Convergence achieved at 56700
+    Interrupted at 56,699 [14%]: Average Loss = 5,301.7
+    Multiprocess sampling (2 chains in 2 jobs)
+    NUTS: [sd, means, beta, alpha]
+
+<div>
+    <style>
+        /*Turns off some styling*/
+        progress {
+            /*gets rid of default border in Firefox and Opera.*/
+            border: none;
+            /*Needs to be in here for Safari polyfill so background images work as expected.*/
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [6000/6000 30:27<00:00 Sampling 2 chains, 171 divergences]
+</div>
+
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 1834 seconds.
+    There were 69 divergences after tuning. Increase `target_accept` or reparameterize.
+    There were 102 divergences after tuning. Increase `target_accept` or reparameterize.
+    The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
+    The estimated number of effective samples is smaller than 200 for some parameters.
+
+- the distribution of `alpha` is centered around 0.5 suggesting only a few components were needed by the model
+
+```python
+az.plot_trace(trace["alpha"])
+plt.show()
+```
+
+![png](06_mixture-models_files/06_mixture-models_37_0.png)
+
+- important to check that $K$ was large enough by plotting average weight of each component
+    - should be at least a few components with negligible weight
+
+```python
+d = pd.DataFrame({"w": np.arange(K), "avg": trace["w"].mean(0)})
+(
+    gg.ggplot(d, gg.aes(x="w", y="avg"))
+    + gg.geom_line()
+    + gg.geom_point()
+    + gg.labs(x="component", y="average weight")
+)
+```
+
+![png](06_mixture-models_files/06_mixture-models_39_0.png)
+
+    <ggplot: (8768170244455)>
+
+- the plot below shows the posterior predictions of the model
+
+```python
+x_plot = np.linspace(cs.exp.min() - 1, cs.exp.max() + 1, 200)
+
+post_pdf_contribs = stats.norm.pdf(
+    np.atleast_3d(x_plot),
+    trace["means"][:, np.newaxis, :],
+    trace["sd"][:, np.newaxis, :],
+)
+post_pdfs = (trace["w"][:, np.newaxis, :] * post_pdf_contribs).sum(axis=-1)
+
+post_pdfs_df = (
+    pd.DataFrame(post_pdfs.T[:, :50])
+    .assign(x=x_plot)
+    .melt(id_vars="x", var_name="sample_idx")
+    .assign(sample_idx=lambda d: d["sample_idx"].astype(str))
+)
+
+(
+    gg.ggplot(post_pdfs_df)
+    + gg.geom_density(
+        gg.aes(x="exp"),
+        data=cs,
+        color="purple",
+        fill="purple",
+        linetype="--",
+        alpha=0.1,
+        size=0.5,
+    )
+    + gg.geom_line(
+        gg.aes(x="x", y="value", group="sample_idx"), alpha=0.1, color="black"
+    )
+    + gg.geom_line(
+        gg.aes(x="x", y="value"),
+        data=post_pdfs_df.groupby("x").mean().reset_index(drop=False),
+        alpha=0.8,
+        color="blue",
+        size=1,
+    )
+    + gg.labs(
+        x="exp",
+        y="probability density",
+        title="Posterior predictions of Dirichlet process MM",
+    )
+)
+```
+
+![png](06_mixture-models_files/06_mixture-models_41_0.png)
+
+    <ggplot: (8768186701370)>
+
+## Continuous mixtures
 
 ```python
 
@@ -844,7 +1106,7 @@ plt.show()
 %watermark -d -u -v -iv -b -h -m
 ```
 
-    Last updated: 2021-01-04
+    Last updated: 2021-01-05
     
     Python implementation: CPython
     Python version       : 3.9.1
@@ -862,12 +1124,12 @@ plt.show()
     
     Git branch: master
     
-    pandas    : 1.2.0
-    plotnine  : 0.7.1
     numpy     : 1.19.4
-    pymc3     : 3.9.3
-    scipy     : 1.6.0
-    seaborn   : 0.11.1
-    theano    : 1.0.5
     arviz     : 0.10.0
+    pymc3     : 3.9.3
     matplotlib: 3.3.3
+    seaborn   : 0.11.1
+    plotnine  : 0.7.1
+    pandas    : 1.2.0
+    scipy     : 1.6.0
+    theano    : 1.0.5
