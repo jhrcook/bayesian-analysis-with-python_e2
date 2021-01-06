@@ -61,7 +61,7 @@ cs_exp = cs["exp"]
 
 ![png](06_mixture-models_files/06_mixture-models_4_0.png)
 
-    <ggplot: (8768203148373)>
+    <ggplot: (8787291433617)>
 
 ### The categorical distribution
 
@@ -88,7 +88,7 @@ example_cat_data = pd.DataFrame(
 
 ![png](06_mixture-models_files/06_mixture-models_6_0.png)
 
-    <ggplot: (8768201942007)>
+    <ggplot: (8787291419058)>
 
 ### The Dirichlet distribution
 
@@ -168,10 +168,10 @@ with pm.Model() as model_mg:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:18<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:21<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 25 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 29 seconds.
     The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
     The estimated number of effective samples is smaller than 200 for some parameters.
 
@@ -335,10 +335,10 @@ with pm.Model() as model_mgp:
         }
     </style>
   <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [4000/4000 00:19<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [4000/4000 00:22<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 26 seconds.
+    Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 29 seconds.
 
 ```python
 varnames = ["means", "p"]
@@ -519,10 +519,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:53<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:51<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 60 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 58 seconds.
     Auto-assigning NUTS sampler...
     Initializing NUTS using jitter+adapt_diag...
     Multiprocess sampling (2 chains in 2 jobs)
@@ -542,10 +542,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 00:49<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 00:57<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 57 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 65 seconds.
     Auto-assigning NUTS sampler...
     Initializing NUTS using jitter+adapt_diag...
     Multiprocess sampling (2 chains in 2 jobs)
@@ -565,10 +565,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 01:28<00:00 Sampling 2 chains, 0 divergences]
+  100.00% [6000/6000 01:37<00:00 Sampling 2 chains, 0 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 95 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 105 seconds.
     Auto-assigning NUTS sampler...
     Initializing NUTS using jitter+adapt_diag...
     Multiprocess sampling (2 chains in 2 jobs)
@@ -588,10 +588,10 @@ for cluster in clusters:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 02:15<00:00 Sampling 2 chains, 23 divergences]
+  100.00% [6000/6000 02:29<00:00 Sampling 2 chains, 23 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 144 seconds.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 158 seconds.
     There were 23 divergences after tuning. Increase `target_accept` or reparameterize.
     The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
     The estimated number of effective samples is smaller than 200 for some parameters.
@@ -663,19 +663,19 @@ for n_clusters, trace in zip(clusters, traces):
 
 ![png](06_mixture-models_files/06_mixture-models_24_0.png)
 
-    <ggplot: (8768194858867)>
+    <ggplot: (8787283105211)>
 
 ![png](06_mixture-models_files/06_mixture-models_24_2.png)
 
-    <ggplot: (8768194847061)>
+    <ggplot: (8787302350954)>
 
 ![png](06_mixture-models_files/06_mixture-models_24_4.png)
 
-    <ggplot: (8768187121661)>
+    <ggplot: (8787274282873)>
 
 ![png](06_mixture-models_files/06_mixture-models_24_6.png)
 
-    <ggplot: (8768185986055)>
+    <ggplot: (8787274160644)>
 
 ```python
 mm_comparison = az.compare(dict(zip(clusters, traces)), method="BB-pseudo-BMA")
@@ -850,7 +850,7 @@ for idx, alpha in enumerate(alphas):
 
 ![png](06_mixture-models_files/06_mixture-models_30_0.png)
 
-    <ggplot: (8768172816788)>
+    <ggplot: (8787302259806)>
 
 - notes on abovbe plot:
     - the DP is a discrete distribution
@@ -902,7 +902,7 @@ data_cum = pd.DataFrame({"x": x, "y": prob_cum})
 
 ![png](06_mixture-models_files/06_mixture-models_33_0.png)
 
-    <ggplot: (8768194840510)>
+    <ggplot: (8787301333327)>
 
 - explanation of `stick_breaking_truncated()`:
 
@@ -967,12 +967,12 @@ with pm.Model() as model:
             background: #F44336;
         }
     </style>
-  <progress value='56642' class='' max='400000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  14.16% [56642/400000 01:54<11:34 Average Loss = 5,262.9]
+  <progress value='58283' class='' max='100000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  58.28% [58283/100000 02:44<01:57 Average Loss = 5,263.6]
 </div>
 
-    Convergence achieved at 56700
-    Interrupted at 56,699 [14%]: Average Loss = 5,301.7
+    Convergence achieved at 58300
+    Interrupted at 58,299 [58%]: Average Loss = 5,301.9
     Multiprocess sampling (2 chains in 2 jobs)
     NUTS: [sd, means, beta, alpha]
 
@@ -990,12 +990,12 @@ with pm.Model() as model:
         }
     </style>
   <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [6000/6000 30:27<00:00 Sampling 2 chains, 171 divergences]
+  100.00% [6000/6000 31:49<00:00 Sampling 2 chains, 129 divergences]
 </div>
 
-    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 1834 seconds.
-    There were 69 divergences after tuning. Increase `target_accept` or reparameterize.
-    There were 102 divergences after tuning. Increase `target_accept` or reparameterize.
+    Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 1918 seconds.
+    There were 61 divergences after tuning. Increase `target_accept` or reparameterize.
+    There were 68 divergences after tuning. Increase `target_accept` or reparameterize.
     The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
     The estimated number of effective samples is smaller than 200 for some parameters.
 
@@ -1023,7 +1023,7 @@ d = pd.DataFrame({"w": np.arange(K), "avg": trace["w"].mean(0)})
 
 ![png](06_mixture-models_files/06_mixture-models_39_0.png)
 
-    <ggplot: (8768170244455)>
+    <ggplot: (8787271517591)>
 
 - the plot below shows the posterior predictions of the model
 
@@ -1075,29 +1075,31 @@ post_pdfs_df = (
 
 ![png](06_mixture-models_files/06_mixture-models_41_0.png)
 
-    <ggplot: (8768186701370)>
+    <ggplot: (8787301018381)>
 
 ## Continuous mixtures
 
-```python
+- examples from previous chapters:
+    - zero-inflated distribution
+    - robust logistic regression (mixture of a random guessing model and logistic regression)
+- can interpret hierarchical models as continuous mixture models
 
-```
+### Beta-binomial and negative binomial
 
-```python
+- beta-binomial is a discrete distribution used to describe the number of successes $y$ for $n$ Bernoulli trials with the probability of success $p$ for each trial
+    - parameterized by $\alpha$ and $\beta$
 
-```
+$$
+\text{BetaBinomial}(y | n, \alpha, \beta) = \int_{0}^{1} \text{Bin}(y|p,n) \text{Beta}(p|\alpha, \beta) dp
+$$
 
-```python
-
-```
-
-```python
-
-```
-
-```python
-
-```
+- find the probability of observing an outcome $y$ by averaging over all possible values of $p$
+    - $p$ is a continuous variable
+- negative-binomial is a Gamma-Poisson mixture
+    - mixture of Poisson distributions where the rate parameter $\lambda$ is a Gamma distribution
+    - often used to fight **over-dispersion**: when the variance is greater than the mean
+    - thus, model data as a mixture of Poisson distributions
+- both beta-binomial and negative-binomial and their zero-inflated counterparts are implemented in PyMC3
 
 ---
 
@@ -1106,7 +1108,7 @@ post_pdfs_df = (
 %watermark -d -u -v -iv -b -h -m
 ```
 
-    Last updated: 2021-01-05
+    Last updated: 2021-01-06
     
     Python implementation: CPython
     Python version       : 3.9.1
@@ -1120,16 +1122,16 @@ post_pdfs_df = (
     CPU cores   : 4
     Architecture: 64bit
     
-    Hostname: JHCookMac.local
+    Hostname: JHCookMac
     
     Git branch: master
     
-    numpy     : 1.19.4
+    pandas    : 1.2.0
     arviz     : 0.10.0
-    pymc3     : 3.9.3
+    scipy     : 1.6.0
     matplotlib: 3.3.3
+    theano    : 1.0.5
     seaborn   : 0.11.1
     plotnine  : 0.7.1
-    pandas    : 1.2.0
-    scipy     : 1.6.0
-    theano    : 1.0.5
+    numpy     : 1.19.4
+    pymc3     : 3.9.3
