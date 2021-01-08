@@ -14,11 +14,11 @@
 <path fill="none" stroke="black" d="M103.55,-8C103.55,-8 199.55,-8 199.55,-8 205.55,-8 211.55,-14 211.55,-20 211.55,-20 211.55,-318.13 211.55,-318.13 211.55,-324.13 205.55,-330.13 199.55,-330.13 199.55,-330.13 103.55,-330.13 103.55,-330.13 97.55,-330.13 91.55,-324.13 91.55,-318.13 91.55,-318.13 91.55,-20 91.55,-20 91.55,-14 97.55,-8 103.55,-8"/>
 <text text-anchor="middle" x="196.55" y="-14.8" font-family="Times,serif" font-size="14.00">10</text>
 </g>
-<!-- beta -->
+<!-- alpha -->
 <g id="node1" class="node">
-<title>beta</title>
+<title>alpha</title>
 <ellipse fill="none" stroke="black" cx="41.55" cy="-180.07" rx="41.61" ry="35.21"/>
-<text text-anchor="middle" x="41.55" y="-189.87" font-family="Times,serif" font-size="14.00">beta</text>
+<text text-anchor="middle" x="41.55" y="-189.87" font-family="Times,serif" font-size="14.00">alpha</text>
 <text text-anchor="middle" x="41.55" y="-175.87" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="41.55" y="-161.87" font-family="Times,serif" font-size="14.00">Normal</text>
 </g>
@@ -30,31 +30,31 @@
 <text text-anchor="middle" x="156.55" y="-69.16" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="156.55" y="-55.16" font-family="Times,serif" font-size="14.00">Poisson</text>
 </g>
-<!-- beta&#45;&gt;tt_pred -->
+<!-- alpha&#45;&gt;tt_pred -->
 <g id="edge4" class="edge">
-<title>beta&#45;&gt;tt_pred</title>
+<title>alpha&#45;&gt;tt_pred</title>
 <path fill="none" stroke="black" d="M69.39,-153.72C84.96,-139.55 104.51,-121.74 121.16,-106.59"/>
 <polygon fill="black" stroke="black" points="123.54,-109.15 128.57,-99.83 118.82,-103.98 123.54,-109.15"/>
 </g>
-<!-- alpha -->
+<!-- beta -->
 <g id="node2" class="node">
-<title>alpha</title>
+<title>beta</title>
 <ellipse fill="none" stroke="black" cx="262.55" cy="-180.07" rx="41.61" ry="35.21"/>
-<text text-anchor="middle" x="262.55" y="-189.87" font-family="Times,serif" font-size="14.00">alpha</text>
+<text text-anchor="middle" x="262.55" y="-189.87" font-family="Times,serif" font-size="14.00">beta</text>
 <text text-anchor="middle" x="262.55" y="-175.87" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="262.55" y="-161.87" font-family="Times,serif" font-size="14.00">Normal</text>
 </g>
-<!-- alpha&#45;&gt;tt_pred -->
+<!-- beta&#45;&gt;tt_pred -->
 <g id="edge5" class="edge">
-<title>alpha&#45;&gt;tt_pred</title>
+<title>beta&#45;&gt;tt_pred</title>
 <path fill="none" stroke="black" d="M235.81,-152.64C222.12,-139.13 205.31,-122.52 190.7,-108.09"/>
 <polygon fill="black" stroke="black" points="192.87,-105.31 183.29,-100.77 187.95,-110.29 192.87,-105.31"/>
 </g>
-<!-- eta -->
+<!-- l -->
 <g id="node3" class="node">
-<title>eta</title>
+<title>l</title>
 <ellipse fill="none" stroke="black" cx="280.55" cy="-286.78" rx="59.29" ry="35.21"/>
-<text text-anchor="middle" x="280.55" y="-296.58" font-family="Times,serif" font-size="14.00">eta</text>
+<text text-anchor="middle" x="280.55" y="-296.58" font-family="Times,serif" font-size="14.00">l</text>
 <text text-anchor="middle" x="280.55" y="-282.58" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="280.55" y="-268.58" font-family="Times,serif" font-size="14.00">HalfCauchy</text>
 </g>
@@ -66,23 +66,23 @@
 <text text-anchor="middle" x="156.55" y="-175.87" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="156.55" y="-161.87" font-family="Times,serif" font-size="14.00">Deterministic</text>
 </g>
-<!-- eta&#45;&gt;f -->
+<!-- l&#45;&gt;f -->
 <g id="edge1" class="edge">
-<title>eta&#45;&gt;f</title>
+<title>l&#45;&gt;f</title>
 <path fill="none" stroke="black" d="M247,-257.44C230.35,-243.39 210.22,-226.39 193.18,-211.99"/>
 <polygon fill="black" stroke="black" points="194.99,-208.94 185.09,-205.16 190.47,-214.29 194.99,-208.94"/>
 </g>
-<!-- l -->
+<!-- eta -->
 <g id="node4" class="node">
-<title>l</title>
+<title>eta</title>
 <ellipse fill="none" stroke="black" cx="416.55" cy="-286.78" rx="59.29" ry="35.21"/>
-<text text-anchor="middle" x="416.55" y="-296.58" font-family="Times,serif" font-size="14.00">l</text>
+<text text-anchor="middle" x="416.55" y="-296.58" font-family="Times,serif" font-size="14.00">eta</text>
 <text text-anchor="middle" x="416.55" y="-282.58" font-family="Times,serif" font-size="14.00">~</text>
 <text text-anchor="middle" x="416.55" y="-268.58" font-family="Times,serif" font-size="14.00">HalfCauchy</text>
 </g>
-<!-- l&#45;&gt;f -->
+<!-- eta&#45;&gt;f -->
 <g id="edge2" class="edge">
-<title>l&#45;&gt;f</title>
+<title>eta&#45;&gt;f</title>
 <path fill="none" stroke="black" d="M373.64,-262.39C365.45,-258.41 356.84,-254.56 348.55,-251.42 289.69,-229.1 269.35,-240.38 211.55,-215.42 207.94,-213.86 204.28,-212.08 200.66,-210.18"/>
 <polygon fill="black" stroke="black" points="202.24,-207.05 191.8,-205.23 198.83,-213.16 202.24,-207.05"/>
 </g>
