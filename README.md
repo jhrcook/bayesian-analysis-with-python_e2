@@ -19,3 +19,4 @@ This book should serve as a strong introduction to the [PyMC3](https://docs.pymc
 [Ch 5. Model Comparison](05_model-comparison.md)  
 [Ch 6. Mixture Models](06_mixture-models.md)  
 [Ch 7. Gaussian Processes](07_gaussian-processes.md)  
+[Ch 8. Inference Engines](08_inference-engines.md)

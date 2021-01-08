@@ -223,3 +223,6 @@ vignettes/*.pdf
 # /*_files/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,macos,r,jupyternotebooks
+
+
+.virtual_documents/
